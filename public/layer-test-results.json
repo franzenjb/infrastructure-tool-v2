@@ -1,0 +1,2901 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "name": "Fire and Emergency Medical Service (EMS) Stations",
+      "category": "Emergency Services",
+      "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/51",
+      "status": "Migrated",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 2,
+      "name": "Land Mobile Private Transmission Towers",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/_Land_Mobile_Private_Transmission_Towers/FeatureServer",
+      "status": "Migrated",
+      "agency": "Federal Communications Commission (FCC)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 3,
+      "name": "Above Ground LNG Storage Facilities",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Above_Ground_LNG_Storage_Facilities_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 4,
+      "name": "Antenna Structure Registration (ASR)",
+      "category": "Communications",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/asr/FeatureServer",
+      "status": "Migrated",
+      "agency": "Federal Communications Commission (FCC)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 5,
+      "name": "Broadband Radio Service (BRS) and Educational Broadband Service (EBS) Transmitters",
+      "category": "Education",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/brs_ebs/FeatureServer",
+      "status": "Migrated",
+      "agency": "Federal Communications Commission (FCC)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 6,
+      "name": "Canada and US Border",
+      "category": "Boundaries",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Canada_and_US_Border/FeatureServer",
+      "status": "Migrated",
+      "agency": "International Boundary Commission",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 7,
+      "name": "Cellular Towers",
+      "category": "Communications",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Cellular_Towers_New/FeatureServer",
+      "status": "Migrated",
+      "agency": "Federal Communications Commission (FCC)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 8,
+      "name": "Child Care Centers",
+      "category": "Critical Facilities",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/ChildCareCenter1/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 9,
+      "name": "Colleges and Universities",
+      "category": "Education",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Colleges_and_Universities/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 10,
+      "name": "Colleges and Universities Campuses",
+      "category": "Education",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Colleges_and_Universities_Campuses/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 11,
+      "name": "Control Areas",
+      "category": "Boundaries",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Control_Areas_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 12,
+      "name": "Electric Holding Company Areas",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Holding_Company_Areas/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 13,
+      "name": "Electric Planning Areas",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Planning_Areas/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 14,
+      "name": "FERC Regions",
+      "category": "Boundaries",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/FERC_Regions_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 15,
+      "name": "Military Installations, Ranges, and Training Areas (MIRTA) DoD Sites - Boundaries",
+      "category": "Government",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/FY22_MIRTA_Boundaries_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "DOD Components",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 16,
+      "name": "Military Installations, Ranges, and Training Areas (MIRTA) DoD Sites - Points",
+      "category": "Government",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/FY22_MIRTA_Points_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "DOD Components",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 17,
+      "name": "Hospitals",
+      "category": "Healthcare",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Hospitals_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 18,
+      "name": "Independent Systems Operators",
+      "category": "Emergency Services",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Independent_System_Operator/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 19,
+      "name": "Land Mobile Broadcast Towers",
+      "category": "Transportation",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Land_Mobile_Broadcast_Towers/FeatureServer",
+      "status": "Migrated",
+      "agency": "Federal Communications Commission (FCC)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 20,
+      "name": "Land Mobile Commercial Transmission Towers",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Land_Mobile_Commercial_Towers/FeatureServer",
+      "status": "Migrated",
+      "agency": "Federal Communications Commission (FCC)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 21,
+      "name": "Local Emergency Operations Center (EOC)",
+      "category": "Emergency Services",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Local_Emergency_Operations_Centers_EOC/FeatureServer",
+      "status": "Migrated",
+      "agency": "FBI Geospatial Program",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 22,
+      "name": "Local Law Enforcement Locations",
+      "category": "Emergency Services",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Local_Law_Enforcement_Locations/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 23,
+      "name": "Microwave Service Towers",
+      "category": "Communications",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Microwave_Service_Towers_New/FeatureServer",
+      "status": "Migrated",
+      "agency": "Federal Communications Commission (FCC)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 24,
+      "name": "Mobile Home Parks",
+      "category": "Critical Facilities",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Mobile_Home_Parks/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 25,
+      "name": "Natural Gas Service Territories",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Natural_Gas_Service_Territories/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 26,
+      "name": "NERC Regions",
+      "category": "Boundaries",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/NERC_Regions/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 27,
+      "name": "NERC Reliability Coordinators",
+      "category": "Other",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/NERC_Reliability_Coordinators/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 28,
+      "name": "Nursing Homes",
+      "category": "Healthcare",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/NursingHomes2024/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 29,
+      "name": "Oil and Natural Gas Platforms",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Oil_and_Natural_Gas_Platforms/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 30,
+      "name": "Paging Transmission Towers",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Paging_Transmission_Towers/FeatureServer",
+      "status": "Migrated",
+      "agency": "Federal Communications Commission (FCC)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 31,
+      "name": "Peak Shaving Facilities",
+      "category": "Other",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Peak_Shaving_Facilities_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 32,
+      "name": "POL Terminals",
+      "category": "Other",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/POL_Terminals/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 33,
+      "name": "Power Plants",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Power_Plants_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "Department of Energy (DOE)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 34,
+      "name": "Prison Boundaries",
+      "category": "Critical Facilities",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Prison_Boundarys/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 35,
+      "name": "Private Schools",
+      "category": "Education",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Private_Schools/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 36,
+      "name": "Public Schools",
+      "category": "Education",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Public_Schools/FeatureServer",
+      "status": "Migrated",
+      "agency": "Oak Ridge National Laboratory (ORNL)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 37,
+      "name": "Regulated Navigational Areas",
+      "category": "Maritime",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Regulated_Navigational_Areas/FeatureServer",
+      "status": "Migrated",
+      "agency": "U.S. Coast Guard (USCG)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 38,
+      "name": "Electric Retail Service Territories",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Retail_Service_Territories_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "Department of Energy (DOE)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 39,
+      "name": "Safety Zones",
+      "category": "Boundaries",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Safety_Zones/FeatureServer",
+      "status": "Migrated",
+      "agency": "U.S. Coast Guard (USCG)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 40,
+      "name": "Security Zones",
+      "category": "Boundaries",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Security_Zones/FeatureServer",
+      "status": "Migrated",
+      "agency": "U.S. Coast Guard (USCG)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 41,
+      "name": "Transmission Lines",
+      "category": "Energy",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Transmission_Lines_gdb/FeatureServer",
+      "status": "Migrated",
+      "agency": "Department of Energy (DOE)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 42,
+      "name": "US Coast Guard (USCG) Captain of the Port Zones",
+      "category": "Transportation",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/US_Coast_Guard_USCG_Captain_of_the_Port_Zones/FeatureServer",
+      "status": "Migrated",
+      "agency": "U.S. Coast Guard (USCG)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 43,
+      "name": "US Coast Guard (USCG) Maritime Differential GPS (DGPS) Locations",
+      "category": "Government",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/US_Coast_Guard_USCG_Maritime_Differential_GPS_DGPS_Locations/FeatureServer",
+      "status": "Migrated",
+      "agency": "U.S. Coast Guard (USCG)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 44,
+      "name": "USCG Districts",
+      "category": "Government",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/USCG_Districts_/FeatureServer",
+      "status": "Migrated",
+      "agency": "U.S. Coast Guard (USCG)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 45,
+      "name": "USCG Sectors",
+      "category": "Government",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/USCG_Sectors_/FeatureServer",
+      "status": "Migrated",
+      "agency": "U.S. Coast Guard (USCG)",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 46,
+      "name": "Veterans Health Administration Medical Facilities",
+      "category": "Healthcare",
+      "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Veterans_Health_Administration_Medical_Facilities/FeatureServer",
+      "status": "Migrated",
+      "agency": "Veterans Health Administration",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 47,
+      "name": "Hydrocarbon Gas Liquid Pipelines",
+      "category": "Energy",
+      "serviceUrl": "https://services7.arcgis.com/FGr1D95XCGALKXqM/arcgis/rest/services/HGL_Pipelines_US_EIA/FeatureServer/0",
+      "status": "Migrated",
+      "agency": "US Energy Atlas",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 48,
+      "name": "Natural Gas Interstate and Intrastate Pipelines",
+      "category": "Energy",
+      "serviceUrl": "https://services7.arcgis.com/FGr1D95XCGALKXqM/arcgis/rest/services/NaturalGas_InterIntrastate_Pipelines_US_EIA/FeatureServer/0",
+      "status": "Migrated",
+      "agency": "US Energy Atlas",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 49,
+      "name": "Petroleum Refineries",
+      "category": "Energy",
+      "serviceUrl": "https://services7.arcgis.com/FGr1D95XCGALKXqM/arcgis/rest/services/Petroleum_Refineries_US_EIA/FeatureServer/22",
+      "status": "Migrated",
+      "agency": "US Energy Atlas",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 50,
+      "name": "Natural Gas Wells",
+      "category": "Energy",
+      "serviceUrl": "https://tiles.arcgis.com/tiles/FGr1D95XCGALKXqM/arcgis/rest/services/GasWells/VectorTileServer",
+      "status": "Migrated",
+      "agency": "US Energy Atlas",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 51,
+      "name": "Oil Wells",
+      "category": "Energy",
+      "serviceUrl": "https://tiles.arcgis.com/tiles/FGr1D95XCGALKXqM/arcgis/rest/services/OilWells/VectorTileServer",
+      "status": "Migrated",
+      "agency": "US Energy Atlas",
+      "requiresDUA": false,
+      "requiresGII": true,
+      "testStatus": "restricted",
+      "lastTested": null,
+      "testError": "Requires authentication"
+    },
+    {
+      "id": 52,
+      "name": "3D Hydrography Program (3DHP) Layers",
+      "category": "Other",
+      "serviceUrl": "https://3dhp.nationalmap.gov/arcgis/rest/services/usgs_3dhp_all/FeatureServer",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:32.867Z",
+      "testMetadata": {
+        "layerCount": 7
+      }
+    },
+    {
+      "id": 53,
+      "name": "Geographic Names Information System (GNIS) Feature Layers",
+      "category": "Other",
+      "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/geonames/MapServer/",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:32.860Z",
+      "testMetadata": {
+        "layerCount": 15
+      }
+    },
+    {
+      "id": 54,
+      "name": "National Forests",
+      "category": "Other",
+      "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/govunits/MapServer/31",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:32.859Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "National Forest"
+      }
+    },
+    {
+      "id": 55,
+      "name": "Courthouses",
+      "category": "Other",
+      "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/40",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:33.133Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "Courthouses"
+      }
+    },
+    {
+      "id": 56,
+      "name": "State Capitols",
+      "category": "Government",
+      "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/41",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:33.957Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "State Capitols"
+      }
+    },
+    {
+      "id": 57,
+      "name": "Trails",
+      "category": "Transportation",
+      "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer/11",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:33.958Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "National Trails"
+      }
+    },
+    {
+      "id": 58,
+      "name": "Nautical Navigation Aids (NAVAID) Locations",
+      "category": "Maritime",
+      "serviceUrl": "https://coast.noaa.gov/arcgis/rest/services/Hosted/AtoNs/FeatureServer/0",
+      "status": "Deprecate",
+      "agency": "National Oceanic and Atmospheric Adminstration",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:33.689Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "Aids to Navigation"
+      }
+    },
+    {
+      "id": 59,
+      "name": "Wrecks and Obstructions",
+      "category": "Other",
+      "serviceUrl": "https://coast.noaa.gov/arcgis/rest/services/Hosted/WrecksObstructions/FeatureServer/0",
+      "status": "Deprecate",
+      "agency": "National Oceanic and Atmospheric Adminstration",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:33.705Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "Wrecks and Obstructions"
+      }
+    },
+    {
+      "id": 60,
+      "name": "Plate Boundaries",
+      "category": "Other",
+      "serviceUrl": "https://earthquake.usgs.gov/arcgis/rest/services/eq/map_plateboundaries/MapServer/1",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:33.680Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "Plates"
+      }
+    },
+    {
+      "id": 61,
+      "name": "Quaternary Fault Lines",
+      "category": "Other",
+      "serviceUrl": "https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/21",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:35.728Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "National Database"
+      }
+    },
+    {
+      "id": 62,
+      "name": "Shipping Fairways",
+      "category": "Other",
+      "serviceUrl": "https://encdirect.noaa.gov/arcgis/rest/services/NavigationChartData/MarineTransportation/FeatureServer/0",
+      "status": "Deprecate",
+      "agency": "National Oceanic and Atmospheric Adminstration",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:34.585Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "Shipping Lanes and Regulations"
+      }
+    },
+    {
+      "id": 63,
+      "name": "Federal Aviation Administration (FAA) Regions",
+      "category": "Government",
+      "serviceUrl": "https://geo.dot.gov/server/rest/services/Hosted/DOT_FAA_Regions_DS/FeatureServer/1",
+      "status": "Deprecate",
+      "agency": "Department of Transportation",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "failed",
+      "lastTested": "2025-08-21T21:50:34.756Z",
+      "testError": "Invalid response: status 200"
+    },
+    {
+      "id": 64,
+      "name": "Intermodal Freight Facilities Pipeline Terminals",
+      "category": "Energy",
+      "serviceUrl": "https://geo.dot.gov/server/rest/services/Hosted/Intermodal_Freight_Facilities_Pipeline_Terminals_DS/FeatureServer/0",
+      "status": "Deprecate",
+      "agency": "Department of Transportation",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "failed",
+      "lastTested": "2025-08-21T21:50:34.752Z",
+      "testError": "Invalid response: status 200"
+    },
+    {
+      "id": 65,
+      "name": "Submerged Land Act (SLA) Boundary",
+      "category": "Boundaries",
+      "serviceUrl": "https://geoseas.geoplatform.gov/hosting/rest/services/Hosted/BOEM_Offshore_Marine_Cadastre_Data_Collection/FeatureServer/0",
+      "status": "Deprecate",
+      "agency": "Bureau of Ocean Energy Management",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:34.602Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "OCS BOEM Offshore Boundary Lines"
+      }
+    },
+    {
+      "id": 66,
+      "name": "Outer Continental Shelf (OCS) Protraction Diagrams & Leasing Maps",
+      "category": "Other",
+      "serviceUrl": "https://geoseas.geoplatform.gov/hosting/rest/services/Hosted/BOEM_Offshore_Marine_Cadastre_Data_Collection/FeatureServer/1",
+      "status": "Deprecate",
+      "agency": "Bureau of Ocean Energy Management",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:36.253Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "OCS Protraction Polygons - 1st Division"
+      }
+    },
+    {
+      "id": 67,
+      "name": "Outer Continental Shelf (OCS) Lease Blocks",
+      "category": "Other",
+      "serviceUrl": "https://geoseas.geoplatform.gov/hosting/rest/services/Hosted/BOEM_Offshore_Marine_Cadastre_Data_Collection/FeatureServer/3",
+      "status": "Deprecate",
+      "agency": "Bureau of Ocean Energy Management",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:36.259Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "OCS Block Polygons - 2nd Division"
+      }
+    },
+    {
+      "id": 68,
+      "name": "National Inventory of Dams (NID)",
+      "category": "Other",
+      "serviceUrl": "https://geospatial.sec.usace.army.mil/dls/rest/services/NID/National_Inventory_of_Dams_Public_Service/MapServer",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:36.542Z",
+      "testMetadata": {
+        "layerCount": 1
+      }
+    },
+    {
+      "id": 69,
+      "name": "Outer Continental Shelf (OCS) Oil and Natural Gas Wells",
+      "category": "Energy",
+      "serviceUrl": "https://gis.boem.gov/arcgis/rest/services/BOEM_BSEE/GOA_Layers/MapServer/1",
+      "status": "Deprecate",
+      "agency": "Bureau of Ocean Energy Management",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:36.546Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "OCS Oil and Natural Gas Wells"
+      }
+    },
+    {
+      "id": 70,
+      "name": "NOAA Electronic Navigational Charts",
+      "category": "Maritime",
+      "serviceUrl": "https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/WMSServer",
+      "status": "Deprecate",
+      "agency": "National Oceanic and Atmospheric Adminstration",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "failed",
+      "lastTested": "2025-08-21T21:50:36.353Z",
+      "testError": "Invalid response: status 200"
+    },
+    {
+      "id": 71,
+      "name": "Federal Emergency Management Agency (FEMA) Regional Offices",
+      "category": "Emergency Services",
+      "serviceUrl": "https://gis.fema.gov/arcgis/rest/services/FEMA/RegHQs/FeatureServer/0",
+      "status": "Deprecate",
+      "agency": "Federal Emergency Management Agency",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.186Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "FEMA Regional Offices"
+      }
+    },
+    {
+      "id": 72,
+      "name": "Federal Emergency Management Agency (FEMA) Regions",
+      "category": "Emergency Services",
+      "serviceUrl": "https://gis.fema.gov/arcgis/rest/services/FEMA/RegHQs/FeatureServer/2",
+      "status": "Deprecate",
+      "agency": "Federal Emergency Management Agency",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.181Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "FEMA Regions"
+      }
+    },
+    {
+      "id": 73,
+      "name": "State Emergency Operations Centers (EOC)",
+      "category": "Emergency Services",
+      "serviceUrl": "https://gis.fema.gov/arcgis/rest/services/FEMA/STATE_EOC/FeatureServer/0",
+      "status": "Deprecate",
+      "agency": "Federal Emergency Management Agency",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.197Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "State Emergency Operations Centers (EOC)"
+      }
+    },
+    {
+      "id": 74,
+      "name": "National Shelter System Facilities",
+      "category": "Other",
+      "serviceUrl": "https://gis.fema.gov/arcgis/rest/services/NSS/FEMA_NSS/FeatureServer/5",
+      "status": "Deprecate",
+      "agency": "Federal Emergency Management Agency",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.263Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "Shelter Locations"
+      }
+    },
+    {
+      "id": 75,
+      "name": "FWS HQ ES Coastal Barrier Resources System",
+      "category": "Other",
+      "serviceUrl": "https://gis1.wim.usgs.gov/server/rest/services/CBRSMapper/CoastalBarrierResourcesSystem/MapServer",
+      "status": "Deprecate",
+      "agency": "US Fish and Wildlife Service Open Data",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.218Z",
+      "testMetadata": {
+        "layerCount": 6
+      }
+    },
+    {
+      "id": 76,
+      "name": "Environmental Protection Agency (EPA) Facilities",
+      "category": "Other",
+      "serviceUrl": "https://gispub.epa.gov/arcgis/rest/services/OEI/EPA_Locations/MapServer",
+      "status": "Deprecate",
+      "agency": "U.S. Environmental Protection Agency",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.856Z",
+      "testMetadata": {
+        "layerCount": 5
+      }
+    },
+    {
+      "id": 77,
+      "name": "Environmental Protection Agency (EPA) Regions",
+      "category": "Boundaries",
+      "serviceUrl": "https://gispub.epa.gov/arcgis/rest/services/OEI/EPA_Locations/MapServer/2",
+      "status": "Deprecate",
+      "agency": "U.S. Environmental Protection Agency",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.856Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "EPA Regions Small Scale (< 1:5,000,001)"
+      }
+    },
+    {
+      "id": 78,
+      "name": "EPA Region Boundaries Exclusive Economic Zone (EEZ)",
+      "category": "Boundaries",
+      "serviceUrl": "https://gispub.epa.gov/arcgis/rest/services/OEI/EPA_Locations/MapServer/4",
+      "status": "Deprecate",
+      "agency": "U.S. Environmental Protection Agency",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.856Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "EPA Region Boundaries with Exclusive Economic Zone"
+      }
+    },
+    {
+      "id": 79,
+      "name": "Mexico and US Border",
+      "category": "Boundaries",
+      "serviceUrl": "https://gisserver.ibwc.gov/agsserver/rest/services/USIBWCPublic/US_MexicoIB/FeatureServer",
+      "status": "Deprecate",
+      "agency": "International Boundary and Water Commission",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:39.036Z",
+      "testMetadata": {
+        "layerCount": 1
+      }
+    },
+    {
+      "id": 80,
+      "name": "National Flood Hazard Layer (NFHL)",
+      "category": "Other",
+      "serviceUrl": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer",
+      "status": "Deprecate",
+      "agency": "Federal Emergency Management Agency",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:37.893Z",
+      "testMetadata": {
+        "layerCount": 32
+      }
+    },
+    {
+      "id": 81,
+      "name": "Watershed Boundary Dataset (WBD)",
+      "category": "Utilities",
+      "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer",
+      "status": "Deprecate",
+      "agency": "U.S. Geological Survey ",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:39.878Z",
+      "testMetadata": {
+        "layerCount": 9
+      }
+    },
+    {
+      "id": 82,
+      "name": "Dynamic Buoys (USACE IENC) ",
+      "category": "Other",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC/USACE_Buoys_Service/MapServer/1",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:39.807Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "3UABUOYS"
+      }
+    },
+    {
+      "id": 83,
+      "name": "Administrative Areas (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/ADMINISTRATIVE_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:39.811Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "ADMINISTRATIVE_AREA"
+      }
+    },
+    {
+      "id": 84,
+      "name": "Airport Area (USACE IENC)",
+      "category": "Transportation",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/AIRPORT_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:39.813Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "AIRPORT_AREA"
+      }
+    },
+    {
+      "id": 85,
+      "name": "Berths Areas (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BERTHS_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:39.807Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "BERTHS_AREA"
+      }
+    },
+    {
+      "id": 86,
+      "name": "Bridge Areas (USACE IENC)",
+      "category": "Transportation",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BRIDGE_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:40.463Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "BRIDGE_AREA"
+      }
+    },
+    {
+      "id": 87,
+      "name": "Building Locations (USACE IENC)",
+      "category": "Other",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BUILDING_SINGLE_POINT/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:40.547Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "BUILDING_SINGLE_POINT"
+      }
+    },
+    {
+      "id": 88,
+      "name": "Built Up Areas Point (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BUILT_UP_AREA_POINT/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:40.466Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "BUILT_UP_AREA_POINT"
+      }
+    },
+    {
+      "id": 89,
+      "name": "Special Purpose Buoys (USACE IENC)",
+      "category": "Other",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BUOY_SPECIAL_PURPOSE_POINT/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:40.468Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "BUOY_SPECIAL_PURPOSE_POINT"
+      }
+    },
+    {
+      "id": 90,
+      "name": "Cable Areas (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/CABLE_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:40.614Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "CABLE_AREA"
+      }
+    },
+    {
+      "id": 91,
+      "name": "Caution Area Locations (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/CAUTION_AREA_POINT/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.200Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "CAUTION_AREA_POINT"
+      }
+    },
+    {
+      "id": 92,
+      "name": "Coastlines (USACE IENC)",
+      "category": "Other",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/COASTLINE_LINE/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.200Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "COASTLINE_LINE"
+      }
+    },
+    {
+      "id": 93,
+      "name": "Conveyor Areas (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/CONVEYOR_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.200Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "CONVEYOR_AREA"
+      }
+    },
+    {
+      "id": 94,
+      "name": "Crane Locations (USACE IENC)",
+      "category": "Other",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/CRANES_POINT/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.197Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "CRANES_POINT"
+      }
+    },
+    {
+      "id": 95,
+      "name": "Dam Lines (USACE IENC)",
+      "category": "Other",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DAM_LINE/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.200Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "DAM_LINE"
+      }
+    },
+    {
+      "id": 96,
+      "name": "Data Coverage Areas (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DATA_COVERAGE_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.792Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "DATA_COVERAGE_AREA"
+      }
+    },
+    {
+      "id": 97,
+      "name": "Data Quality Assessment Areas (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DATA_QUALITY_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.792Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "DATA_QUALITY_AREA"
+      }
+    },
+    {
+      "id": 98,
+      "name": "Daymark Locations (USACE IENC)",
+      "category": "Other",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DAYMARK_POINT/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.793Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "DAYMARK_POINT"
+      }
+    },
+    {
+      "id": 99,
+      "name": "Depth Areas (USACE IENC)",
+      "category": "Boundaries",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DEPTH_AREA/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.792Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "DEPTH_AREA"
+      }
+    },
+    {
+      "id": 100,
+      "name": "Distance Marks (USACE IENC)",
+      "category": "Other",
+      "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DISTANCE_MARK_POINT/MapServer/0",
+      "status": "Deprecate",
+      "agency": "U.S. Army Corps of Engineers",
+      "requiresDUA": false,
+      "requiresGII": false,
+      "testStatus": "working",
+      "lastTested": "2025-08-21T21:50:41.792Z",
+      "testMetadata": {
+        "type": "Feature Layer",
+        "name": "DISTANCE_MARK_POINT"
+      }
+    }
+  ],
+  "categorized": {
+    "Emergency Services": [
+      {
+        "id": 1,
+        "name": "Fire and Emergency Medical Service (EMS) Stations",
+        "category": "Emergency Services",
+        "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/51",
+        "status": "Migrated",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 18,
+        "name": "Independent Systems Operators",
+        "category": "Emergency Services",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Independent_System_Operator/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 21,
+        "name": "Local Emergency Operations Center (EOC)",
+        "category": "Emergency Services",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Local_Emergency_Operations_Centers_EOC/FeatureServer",
+        "status": "Migrated",
+        "agency": "FBI Geospatial Program",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 22,
+        "name": "Local Law Enforcement Locations",
+        "category": "Emergency Services",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Local_Law_Enforcement_Locations/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 71,
+        "name": "Federal Emergency Management Agency (FEMA) Regional Offices",
+        "category": "Emergency Services",
+        "serviceUrl": "https://gis.fema.gov/arcgis/rest/services/FEMA/RegHQs/FeatureServer/0",
+        "status": "Deprecate",
+        "agency": "Federal Emergency Management Agency",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.186Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "FEMA Regional Offices"
+        }
+      },
+      {
+        "id": 72,
+        "name": "Federal Emergency Management Agency (FEMA) Regions",
+        "category": "Emergency Services",
+        "serviceUrl": "https://gis.fema.gov/arcgis/rest/services/FEMA/RegHQs/FeatureServer/2",
+        "status": "Deprecate",
+        "agency": "Federal Emergency Management Agency",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.181Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "FEMA Regions"
+        }
+      },
+      {
+        "id": 73,
+        "name": "State Emergency Operations Centers (EOC)",
+        "category": "Emergency Services",
+        "serviceUrl": "https://gis.fema.gov/arcgis/rest/services/FEMA/STATE_EOC/FeatureServer/0",
+        "status": "Deprecate",
+        "agency": "Federal Emergency Management Agency",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.197Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "State Emergency Operations Centers (EOC)"
+        }
+      }
+    ],
+    "Energy": [
+      {
+        "id": 2,
+        "name": "Land Mobile Private Transmission Towers",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/_Land_Mobile_Private_Transmission_Towers/FeatureServer",
+        "status": "Migrated",
+        "agency": "Federal Communications Commission (FCC)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 3,
+        "name": "Above Ground LNG Storage Facilities",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Above_Ground_LNG_Storage_Facilities_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 12,
+        "name": "Electric Holding Company Areas",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Holding_Company_Areas/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 13,
+        "name": "Electric Planning Areas",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Electric_Planning_Areas/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 20,
+        "name": "Land Mobile Commercial Transmission Towers",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Land_Mobile_Commercial_Towers/FeatureServer",
+        "status": "Migrated",
+        "agency": "Federal Communications Commission (FCC)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 25,
+        "name": "Natural Gas Service Territories",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Natural_Gas_Service_Territories/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 29,
+        "name": "Oil and Natural Gas Platforms",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Oil_and_Natural_Gas_Platforms/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 30,
+        "name": "Paging Transmission Towers",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Paging_Transmission_Towers/FeatureServer",
+        "status": "Migrated",
+        "agency": "Federal Communications Commission (FCC)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 33,
+        "name": "Power Plants",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Power_Plants_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "Department of Energy (DOE)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 38,
+        "name": "Electric Retail Service Territories",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Retail_Service_Territories_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "Department of Energy (DOE)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 41,
+        "name": "Transmission Lines",
+        "category": "Energy",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Transmission_Lines_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "Department of Energy (DOE)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 47,
+        "name": "Hydrocarbon Gas Liquid Pipelines",
+        "category": "Energy",
+        "serviceUrl": "https://services7.arcgis.com/FGr1D95XCGALKXqM/arcgis/rest/services/HGL_Pipelines_US_EIA/FeatureServer/0",
+        "status": "Migrated",
+        "agency": "US Energy Atlas",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 48,
+        "name": "Natural Gas Interstate and Intrastate Pipelines",
+        "category": "Energy",
+        "serviceUrl": "https://services7.arcgis.com/FGr1D95XCGALKXqM/arcgis/rest/services/NaturalGas_InterIntrastate_Pipelines_US_EIA/FeatureServer/0",
+        "status": "Migrated",
+        "agency": "US Energy Atlas",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 49,
+        "name": "Petroleum Refineries",
+        "category": "Energy",
+        "serviceUrl": "https://services7.arcgis.com/FGr1D95XCGALKXqM/arcgis/rest/services/Petroleum_Refineries_US_EIA/FeatureServer/22",
+        "status": "Migrated",
+        "agency": "US Energy Atlas",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 50,
+        "name": "Natural Gas Wells",
+        "category": "Energy",
+        "serviceUrl": "https://tiles.arcgis.com/tiles/FGr1D95XCGALKXqM/arcgis/rest/services/GasWells/VectorTileServer",
+        "status": "Migrated",
+        "agency": "US Energy Atlas",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 51,
+        "name": "Oil Wells",
+        "category": "Energy",
+        "serviceUrl": "https://tiles.arcgis.com/tiles/FGr1D95XCGALKXqM/arcgis/rest/services/OilWells/VectorTileServer",
+        "status": "Migrated",
+        "agency": "US Energy Atlas",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 64,
+        "name": "Intermodal Freight Facilities Pipeline Terminals",
+        "category": "Energy",
+        "serviceUrl": "https://geo.dot.gov/server/rest/services/Hosted/Intermodal_Freight_Facilities_Pipeline_Terminals_DS/FeatureServer/0",
+        "status": "Deprecate",
+        "agency": "Department of Transportation",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "failed",
+        "lastTested": "2025-08-21T21:50:34.752Z",
+        "testError": "Invalid response: status 200"
+      },
+      {
+        "id": 69,
+        "name": "Outer Continental Shelf (OCS) Oil and Natural Gas Wells",
+        "category": "Energy",
+        "serviceUrl": "https://gis.boem.gov/arcgis/rest/services/BOEM_BSEE/GOA_Layers/MapServer/1",
+        "status": "Deprecate",
+        "agency": "Bureau of Ocean Energy Management",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:36.546Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "OCS Oil and Natural Gas Wells"
+        }
+      }
+    ],
+    "Communications": [
+      {
+        "id": 4,
+        "name": "Antenna Structure Registration (ASR)",
+        "category": "Communications",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/asr/FeatureServer",
+        "status": "Migrated",
+        "agency": "Federal Communications Commission (FCC)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 7,
+        "name": "Cellular Towers",
+        "category": "Communications",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Cellular_Towers_New/FeatureServer",
+        "status": "Migrated",
+        "agency": "Federal Communications Commission (FCC)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 23,
+        "name": "Microwave Service Towers",
+        "category": "Communications",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Microwave_Service_Towers_New/FeatureServer",
+        "status": "Migrated",
+        "agency": "Federal Communications Commission (FCC)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      }
+    ],
+    "Education": [
+      {
+        "id": 5,
+        "name": "Broadband Radio Service (BRS) and Educational Broadband Service (EBS) Transmitters",
+        "category": "Education",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/brs_ebs/FeatureServer",
+        "status": "Migrated",
+        "agency": "Federal Communications Commission (FCC)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 9,
+        "name": "Colleges and Universities",
+        "category": "Education",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Colleges_and_Universities/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 10,
+        "name": "Colleges and Universities Campuses",
+        "category": "Education",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Colleges_and_Universities_Campuses/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 35,
+        "name": "Private Schools",
+        "category": "Education",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Private_Schools/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 36,
+        "name": "Public Schools",
+        "category": "Education",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Public_Schools/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      }
+    ],
+    "Boundaries": [
+      {
+        "id": 6,
+        "name": "Canada and US Border",
+        "category": "Boundaries",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Canada_and_US_Border/FeatureServer",
+        "status": "Migrated",
+        "agency": "International Boundary Commission",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 11,
+        "name": "Control Areas",
+        "category": "Boundaries",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Control_Areas_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 14,
+        "name": "FERC Regions",
+        "category": "Boundaries",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/FERC_Regions_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 26,
+        "name": "NERC Regions",
+        "category": "Boundaries",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/NERC_Regions/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 39,
+        "name": "Safety Zones",
+        "category": "Boundaries",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Safety_Zones/FeatureServer",
+        "status": "Migrated",
+        "agency": "U.S. Coast Guard (USCG)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 40,
+        "name": "Security Zones",
+        "category": "Boundaries",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Security_Zones/FeatureServer",
+        "status": "Migrated",
+        "agency": "U.S. Coast Guard (USCG)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 65,
+        "name": "Submerged Land Act (SLA) Boundary",
+        "category": "Boundaries",
+        "serviceUrl": "https://geoseas.geoplatform.gov/hosting/rest/services/Hosted/BOEM_Offshore_Marine_Cadastre_Data_Collection/FeatureServer/0",
+        "status": "Deprecate",
+        "agency": "Bureau of Ocean Energy Management",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:34.602Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "OCS BOEM Offshore Boundary Lines"
+        }
+      },
+      {
+        "id": 77,
+        "name": "Environmental Protection Agency (EPA) Regions",
+        "category": "Boundaries",
+        "serviceUrl": "https://gispub.epa.gov/arcgis/rest/services/OEI/EPA_Locations/MapServer/2",
+        "status": "Deprecate",
+        "agency": "U.S. Environmental Protection Agency",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.856Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "EPA Regions Small Scale (< 1:5,000,001)"
+        }
+      },
+      {
+        "id": 78,
+        "name": "EPA Region Boundaries Exclusive Economic Zone (EEZ)",
+        "category": "Boundaries",
+        "serviceUrl": "https://gispub.epa.gov/arcgis/rest/services/OEI/EPA_Locations/MapServer/4",
+        "status": "Deprecate",
+        "agency": "U.S. Environmental Protection Agency",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.856Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "EPA Region Boundaries with Exclusive Economic Zone"
+        }
+      },
+      {
+        "id": 79,
+        "name": "Mexico and US Border",
+        "category": "Boundaries",
+        "serviceUrl": "https://gisserver.ibwc.gov/agsserver/rest/services/USIBWCPublic/US_MexicoIB/FeatureServer",
+        "status": "Deprecate",
+        "agency": "International Boundary and Water Commission",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:39.036Z",
+        "testMetadata": {
+          "layerCount": 1
+        }
+      },
+      {
+        "id": 83,
+        "name": "Administrative Areas (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/ADMINISTRATIVE_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:39.811Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "ADMINISTRATIVE_AREA"
+        }
+      },
+      {
+        "id": 85,
+        "name": "Berths Areas (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BERTHS_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:39.807Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "BERTHS_AREA"
+        }
+      },
+      {
+        "id": 88,
+        "name": "Built Up Areas Point (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BUILT_UP_AREA_POINT/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:40.466Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "BUILT_UP_AREA_POINT"
+        }
+      },
+      {
+        "id": 90,
+        "name": "Cable Areas (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/CABLE_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:40.614Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "CABLE_AREA"
+        }
+      },
+      {
+        "id": 91,
+        "name": "Caution Area Locations (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/CAUTION_AREA_POINT/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.200Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "CAUTION_AREA_POINT"
+        }
+      },
+      {
+        "id": 93,
+        "name": "Conveyor Areas (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/CONVEYOR_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.200Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "CONVEYOR_AREA"
+        }
+      },
+      {
+        "id": 96,
+        "name": "Data Coverage Areas (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DATA_COVERAGE_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.792Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "DATA_COVERAGE_AREA"
+        }
+      },
+      {
+        "id": 97,
+        "name": "Data Quality Assessment Areas (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DATA_QUALITY_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.792Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "DATA_QUALITY_AREA"
+        }
+      },
+      {
+        "id": 99,
+        "name": "Depth Areas (USACE IENC)",
+        "category": "Boundaries",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DEPTH_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.792Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "DEPTH_AREA"
+        }
+      }
+    ],
+    "Critical Facilities": [
+      {
+        "id": 8,
+        "name": "Child Care Centers",
+        "category": "Critical Facilities",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/ChildCareCenter1/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 24,
+        "name": "Mobile Home Parks",
+        "category": "Critical Facilities",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Mobile_Home_Parks/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 34,
+        "name": "Prison Boundaries",
+        "category": "Critical Facilities",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Prison_Boundarys/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      }
+    ],
+    "Government": [
+      {
+        "id": 15,
+        "name": "Military Installations, Ranges, and Training Areas (MIRTA) DoD Sites - Boundaries",
+        "category": "Government",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/FY22_MIRTA_Boundaries_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "DOD Components",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 16,
+        "name": "Military Installations, Ranges, and Training Areas (MIRTA) DoD Sites - Points",
+        "category": "Government",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/FY22_MIRTA_Points_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "DOD Components",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 43,
+        "name": "US Coast Guard (USCG) Maritime Differential GPS (DGPS) Locations",
+        "category": "Government",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/US_Coast_Guard_USCG_Maritime_Differential_GPS_DGPS_Locations/FeatureServer",
+        "status": "Migrated",
+        "agency": "U.S. Coast Guard (USCG)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 44,
+        "name": "USCG Districts",
+        "category": "Government",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/USCG_Districts_/FeatureServer",
+        "status": "Migrated",
+        "agency": "U.S. Coast Guard (USCG)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 45,
+        "name": "USCG Sectors",
+        "category": "Government",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/USCG_Sectors_/FeatureServer",
+        "status": "Migrated",
+        "agency": "U.S. Coast Guard (USCG)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 56,
+        "name": "State Capitols",
+        "category": "Government",
+        "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/41",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:33.957Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "State Capitols"
+        }
+      },
+      {
+        "id": 63,
+        "name": "Federal Aviation Administration (FAA) Regions",
+        "category": "Government",
+        "serviceUrl": "https://geo.dot.gov/server/rest/services/Hosted/DOT_FAA_Regions_DS/FeatureServer/1",
+        "status": "Deprecate",
+        "agency": "Department of Transportation",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "failed",
+        "lastTested": "2025-08-21T21:50:34.756Z",
+        "testError": "Invalid response: status 200"
+      }
+    ],
+    "Healthcare": [
+      {
+        "id": 17,
+        "name": "Hospitals",
+        "category": "Healthcare",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Hospitals_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 28,
+        "name": "Nursing Homes",
+        "category": "Healthcare",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/NursingHomes2024/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 46,
+        "name": "Veterans Health Administration Medical Facilities",
+        "category": "Healthcare",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Veterans_Health_Administration_Medical_Facilities/FeatureServer",
+        "status": "Migrated",
+        "agency": "Veterans Health Administration",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      }
+    ],
+    "Transportation": [
+      {
+        "id": 19,
+        "name": "Land Mobile Broadcast Towers",
+        "category": "Transportation",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Land_Mobile_Broadcast_Towers/FeatureServer",
+        "status": "Migrated",
+        "agency": "Federal Communications Commission (FCC)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 42,
+        "name": "US Coast Guard (USCG) Captain of the Port Zones",
+        "category": "Transportation",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/US_Coast_Guard_USCG_Captain_of_the_Port_Zones/FeatureServer",
+        "status": "Migrated",
+        "agency": "U.S. Coast Guard (USCG)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 57,
+        "name": "Trails",
+        "category": "Transportation",
+        "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer/11",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:33.958Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "National Trails"
+        }
+      },
+      {
+        "id": 84,
+        "name": "Airport Area (USACE IENC)",
+        "category": "Transportation",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/AIRPORT_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:39.813Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "AIRPORT_AREA"
+        }
+      },
+      {
+        "id": 86,
+        "name": "Bridge Areas (USACE IENC)",
+        "category": "Transportation",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BRIDGE_AREA/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:40.463Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "BRIDGE_AREA"
+        }
+      }
+    ],
+    "Other": [
+      {
+        "id": 27,
+        "name": "NERC Reliability Coordinators",
+        "category": "Other",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/NERC_Reliability_Coordinators/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 31,
+        "name": "Peak Shaving Facilities",
+        "category": "Other",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Peak_Shaving_Facilities_gdb/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 32,
+        "name": "POL Terminals",
+        "category": "Other",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/POL_Terminals/FeatureServer",
+        "status": "Migrated",
+        "agency": "Oak Ridge National Laboratory (ORNL)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 52,
+        "name": "3D Hydrography Program (3DHP) Layers",
+        "category": "Other",
+        "serviceUrl": "https://3dhp.nationalmap.gov/arcgis/rest/services/usgs_3dhp_all/FeatureServer",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:32.867Z",
+        "testMetadata": {
+          "layerCount": 7
+        }
+      },
+      {
+        "id": 53,
+        "name": "Geographic Names Information System (GNIS) Feature Layers",
+        "category": "Other",
+        "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/geonames/MapServer/",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:32.860Z",
+        "testMetadata": {
+          "layerCount": 15
+        }
+      },
+      {
+        "id": 54,
+        "name": "National Forests",
+        "category": "Other",
+        "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/govunits/MapServer/31",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:32.859Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "National Forest"
+        }
+      },
+      {
+        "id": 55,
+        "name": "Courthouses",
+        "category": "Other",
+        "serviceUrl": "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/40",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:33.133Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "Courthouses"
+        }
+      },
+      {
+        "id": 59,
+        "name": "Wrecks and Obstructions",
+        "category": "Other",
+        "serviceUrl": "https://coast.noaa.gov/arcgis/rest/services/Hosted/WrecksObstructions/FeatureServer/0",
+        "status": "Deprecate",
+        "agency": "National Oceanic and Atmospheric Adminstration",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:33.705Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "Wrecks and Obstructions"
+        }
+      },
+      {
+        "id": 60,
+        "name": "Plate Boundaries",
+        "category": "Other",
+        "serviceUrl": "https://earthquake.usgs.gov/arcgis/rest/services/eq/map_plateboundaries/MapServer/1",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:33.680Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "Plates"
+        }
+      },
+      {
+        "id": 61,
+        "name": "Quaternary Fault Lines",
+        "category": "Other",
+        "serviceUrl": "https://earthquake.usgs.gov/arcgis/rest/services/haz/Qfaults/MapServer/21",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:35.728Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "National Database"
+        }
+      },
+      {
+        "id": 62,
+        "name": "Shipping Fairways",
+        "category": "Other",
+        "serviceUrl": "https://encdirect.noaa.gov/arcgis/rest/services/NavigationChartData/MarineTransportation/FeatureServer/0",
+        "status": "Deprecate",
+        "agency": "National Oceanic and Atmospheric Adminstration",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:34.585Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "Shipping Lanes and Regulations"
+        }
+      },
+      {
+        "id": 66,
+        "name": "Outer Continental Shelf (OCS) Protraction Diagrams & Leasing Maps",
+        "category": "Other",
+        "serviceUrl": "https://geoseas.geoplatform.gov/hosting/rest/services/Hosted/BOEM_Offshore_Marine_Cadastre_Data_Collection/FeatureServer/1",
+        "status": "Deprecate",
+        "agency": "Bureau of Ocean Energy Management",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:36.253Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "OCS Protraction Polygons - 1st Division"
+        }
+      },
+      {
+        "id": 67,
+        "name": "Outer Continental Shelf (OCS) Lease Blocks",
+        "category": "Other",
+        "serviceUrl": "https://geoseas.geoplatform.gov/hosting/rest/services/Hosted/BOEM_Offshore_Marine_Cadastre_Data_Collection/FeatureServer/3",
+        "status": "Deprecate",
+        "agency": "Bureau of Ocean Energy Management",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:36.259Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "OCS Block Polygons - 2nd Division"
+        }
+      },
+      {
+        "id": 68,
+        "name": "National Inventory of Dams (NID)",
+        "category": "Other",
+        "serviceUrl": "https://geospatial.sec.usace.army.mil/dls/rest/services/NID/National_Inventory_of_Dams_Public_Service/MapServer",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:36.542Z",
+        "testMetadata": {
+          "layerCount": 1
+        }
+      },
+      {
+        "id": 74,
+        "name": "National Shelter System Facilities",
+        "category": "Other",
+        "serviceUrl": "https://gis.fema.gov/arcgis/rest/services/NSS/FEMA_NSS/FeatureServer/5",
+        "status": "Deprecate",
+        "agency": "Federal Emergency Management Agency",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.263Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "Shelter Locations"
+        }
+      },
+      {
+        "id": 75,
+        "name": "FWS HQ ES Coastal Barrier Resources System",
+        "category": "Other",
+        "serviceUrl": "https://gis1.wim.usgs.gov/server/rest/services/CBRSMapper/CoastalBarrierResourcesSystem/MapServer",
+        "status": "Deprecate",
+        "agency": "US Fish and Wildlife Service Open Data",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.218Z",
+        "testMetadata": {
+          "layerCount": 6
+        }
+      },
+      {
+        "id": 76,
+        "name": "Environmental Protection Agency (EPA) Facilities",
+        "category": "Other",
+        "serviceUrl": "https://gispub.epa.gov/arcgis/rest/services/OEI/EPA_Locations/MapServer",
+        "status": "Deprecate",
+        "agency": "U.S. Environmental Protection Agency",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.856Z",
+        "testMetadata": {
+          "layerCount": 5
+        }
+      },
+      {
+        "id": 80,
+        "name": "National Flood Hazard Layer (NFHL)",
+        "category": "Other",
+        "serviceUrl": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer",
+        "status": "Deprecate",
+        "agency": "Federal Emergency Management Agency",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:37.893Z",
+        "testMetadata": {
+          "layerCount": 32
+        }
+      },
+      {
+        "id": 82,
+        "name": "Dynamic Buoys (USACE IENC) ",
+        "category": "Other",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC/USACE_Buoys_Service/MapServer/1",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:39.807Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "3UABUOYS"
+        }
+      },
+      {
+        "id": 87,
+        "name": "Building Locations (USACE IENC)",
+        "category": "Other",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BUILDING_SINGLE_POINT/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:40.547Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "BUILDING_SINGLE_POINT"
+        }
+      },
+      {
+        "id": 89,
+        "name": "Special Purpose Buoys (USACE IENC)",
+        "category": "Other",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/BUOY_SPECIAL_PURPOSE_POINT/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:40.468Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "BUOY_SPECIAL_PURPOSE_POINT"
+        }
+      },
+      {
+        "id": 92,
+        "name": "Coastlines (USACE IENC)",
+        "category": "Other",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/COASTLINE_LINE/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.200Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "COASTLINE_LINE"
+        }
+      },
+      {
+        "id": 94,
+        "name": "Crane Locations (USACE IENC)",
+        "category": "Other",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/CRANES_POINT/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.197Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "CRANES_POINT"
+        }
+      },
+      {
+        "id": 95,
+        "name": "Dam Lines (USACE IENC)",
+        "category": "Other",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DAM_LINE/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.200Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "DAM_LINE"
+        }
+      },
+      {
+        "id": 98,
+        "name": "Daymark Locations (USACE IENC)",
+        "category": "Other",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DAYMARK_POINT/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.793Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "DAYMARK_POINT"
+        }
+      },
+      {
+        "id": 100,
+        "name": "Distance Marks (USACE IENC)",
+        "category": "Other",
+        "serviceUrl": "https://ienccloud.us/arcgis/rest/services/IENC_Feature_Classes/DISTANCE_MARK_POINT/MapServer/0",
+        "status": "Deprecate",
+        "agency": "U.S. Army Corps of Engineers",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:41.792Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "DISTANCE_MARK_POINT"
+        }
+      }
+    ],
+    "Maritime": [
+      {
+        "id": 37,
+        "name": "Regulated Navigational Areas",
+        "category": "Maritime",
+        "serviceUrl": "https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Regulated_Navigational_Areas/FeatureServer",
+        "status": "Migrated",
+        "agency": "U.S. Coast Guard (USCG)",
+        "requiresDUA": false,
+        "requiresGII": true,
+        "testStatus": "restricted",
+        "lastTested": null,
+        "testError": "Requires authentication"
+      },
+      {
+        "id": 58,
+        "name": "Nautical Navigation Aids (NAVAID) Locations",
+        "category": "Maritime",
+        "serviceUrl": "https://coast.noaa.gov/arcgis/rest/services/Hosted/AtoNs/FeatureServer/0",
+        "status": "Deprecate",
+        "agency": "National Oceanic and Atmospheric Adminstration",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:33.689Z",
+        "testMetadata": {
+          "type": "Feature Layer",
+          "name": "Aids to Navigation"
+        }
+      },
+      {
+        "id": 70,
+        "name": "NOAA Electronic Navigational Charts",
+        "category": "Maritime",
+        "serviceUrl": "https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/ENCOnline/MapServer/exts/MaritimeChartService/WMSServer",
+        "status": "Deprecate",
+        "agency": "National Oceanic and Atmospheric Adminstration",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "failed",
+        "lastTested": "2025-08-21T21:50:36.353Z",
+        "testError": "Invalid response: status 200"
+      }
+    ],
+    "Utilities": [
+      {
+        "id": 81,
+        "name": "Watershed Boundary Dataset (WBD)",
+        "category": "Utilities",
+        "serviceUrl": "https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer",
+        "status": "Deprecate",
+        "agency": "U.S. Geological Survey ",
+        "requiresDUA": false,
+        "requiresGII": false,
+        "testStatus": "working",
+        "lastTested": "2025-08-21T21:50:39.878Z",
+        "testMetadata": {
+          "layerCount": 9
+        }
+      }
+    ]
+  },
+  "stats": {
+    "total": 100,
+    "working": 46,
+    "failed": 3,
+    "restricted": 51,
+    "no_url": 0,
+    "timeout": 0,
+    "unreachable": 0,
+    "auth_required": 0
+  },
+  "testDate": "2025-08-21T21:50:42.295Z"
+}
