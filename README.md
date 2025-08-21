@@ -2,6 +2,12 @@
 
 An improved HIFLD infrastructure search and visualization tool with layer testing, categorization, and working status indicators.
 
+## 🔗 Quick Access
+
+**Local Development:** http://localhost:3000
+
+**Live Demo:** https://franzenjb.github.io/infrastructure-tool-v2/
+
 ## Features
 
 - **Layer Testing**: Automatically tests each service endpoint to verify availability
@@ -10,10 +16,6 @@ An improved HIFLD infrastructure search and visualization tool with layer testin
 - **Advanced Filtering**: Filter by category, search by name/agency, show only working layers
 - **Interactive Map**: Visualize working layers on an ArcGIS-powered map
 - **Export Functionality**: Export map configurations for use in ArcGIS Online
-
-## Live Demo
-
-Visit: https://franzenjb.github.io/infrastructure-tool-v2/
 
 ## Layer Status Legend
 
@@ -49,6 +51,8 @@ npm run dev
 # Build for production
 npm run build
 ```
+
+**After running `npm run dev`, open:** http://localhost:3000
 
 ## Layer Categories
 

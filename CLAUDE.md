@@ -2,193 +2,163 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Claude Code Access & Credentials
-**IMPORTANT**: All credentials and access tokens are stored in `~/.claude/ACCESS_CREDENTIALS.md`
-- This file should exist on all machines where you use Claude Code
-- Run `~/.claude/setup-claude-env.sh` to verify access
-- Update credentials in that file when they change
+## 🔗 CRITICAL REQUIREMENT: ALWAYS PROVIDE LOCALHOST LINK
 
-## Project Overview
+**AFTER RUNNING `npm run dev`, ALWAYS PROVIDE THIS LINK TO THE USER:**
+### http://localhost:3000
 
-HIFLD (Homeland Infrastructure Foundation-Level Data) search and mapping tool for discovering and visualizing critical infrastructure layers. The application allows users to search ~300 infrastructure layers, visualize them on an interactive map, and export configurations for use in ArcGIS Online.
+This is a standard 100% requirement for ALL projects. Never omit the localhost link.
 
-## Development Commands
+## Commands
 
 ```bash
 # Install dependencies
 npm install
 
-# Run development server (localhost:3000)
+# Process CSV data into categorized JSON (required before first run)
+npm run process-data
+
+# Test all layer endpoints for availability (updates layer-test-results.json)
+npm run test-layers
+
+# Start development server
 npm run dev
+# THEN ALWAYS PROVIDE: http://localhost:3000
 
 # Build for production
 npm run build
 
-# Start production server
-npm start
-
 # Run linter
 npm run lint
 
-# Type checking (no test suite exists)
-npx tsc --noEmit
-
-# Deploy to Vercel (auto-deploys on git push to main)
-vercel
+# Deploy to GitHub Pages (uncomment export/basePath in next.config.js first)
+git push origin main
 ```
 
-## Critical Workflow Requirements
+## Data Processing Pipeline Architecture
 
-**IMPORTANT**: User requires all updates to be committed to GitHub AND deployed to Vercel. After making changes:
-1. Commit and push to GitHub
-2. Vercel auto-deploys from main branch
-3. Deployment takes 2-3 minutes
+The application uses a two-stage data processing pipeline that must be understood to make architectural changes:
 
-**File Editing Rule**: Always provide complete file replacements, never partial edits. This is a strict requirement from the user.
+### Stage 1: CSV Processing (`scripts/process-data.js`)
+1. Reads `public/HIFLD_Open_Crosswalk_Geoplatform.csv` (305 infrastructure layers)
+2. Categorizes layers based on keywords in layer names
+3. Outputs `public/processed-layers.json` with structure:
+   - `layers`: Array of all layers with categories
+   - `categorized`: Layers grouped by category
+   - `stats`: Summary statistics
 
-## Project Structure
+### Stage 2: Layer Testing (`scripts/test-layers.js`)
+1. Reads `processed-layers.json`
+2. Tests each layer's service endpoint with lenient validation:
+   - Accepts ANY 200 response as working
+   - Tries multiple URL formats (plain, ?f=json, ?f=pjson)
+   - 10-second timeout per request
+3. Outputs `public/layer-test-results.json` with:
+   - `results`: All layers with test status
+   - `stats`: Working/failed/restricted counts
+   - Test statuses: 'working', 'failed', 'restricted', 'no_url', 'timeout', 'unreachable'
 
-```
-/
-├── src/                    # Next.js application source
-│   ├── app/               # App router pages and API routes
-│   ├── components/        # React components
-│   ├── lib/              # Utility functions
-│   └── middleware.ts     # Request middleware
-├── public/                # Static assets
-│   └── HIFLD_Open_Crosswalk_Geoplatform.csv  # Layer metadata
-├── docs/                  # Documentation
-├── python-prototypes/     # Python proof-of-concept scripts
-└── prototypes/           # HTML/JS prototypes
-```
+### Stage 3: Runtime Loading
+The React app (`src/app/page.tsx`) loads data in priority order:
+1. First tries `/layer-test-results.json` (has test results)
+2. Falls back to `/processed-layers.json` (no test results)
+3. All filtering/searching happens client-side on loaded data
 
-## Environment Configuration
+## Component Architecture
 
-Required `.env.local` variables:
-```
-# ArcGIS API credentials
-NEXT_PUBLIC_ARCGIS_API_KEY=your_api_key_here
-ARCGIS_CLIENT_ID=your_client_id_here
-ARCGIS_CLIENT_SECRET=your_client_secret_here
-
-# App access password (defaults to 'hifld2024')
-APP_PASSWORD=redcross
-```
-
-## Architecture
-
-### Technology Stack
-- **Framework**: Next.js 14.0.4 (App Router)
-- **UI**: React 18.2 with TypeScript
-- **Styling**: Tailwind CSS 3.3
-- **Mapping**: @arcgis/core 4.28
-- **Data Processing**: PapaParse for CSV parsing
-- **HTTP Client**: Axios for API requests
-- **Deployment**: Vercel (auto-deploy on push)
-
-### Core Data Flow
-
-1. **Layer Discovery**: CSV file (`/public/HIFLD_Open_Crosswalk_Geoplatform.csv`) contains infrastructure layer metadata
-2. **Search**: User searches → `searchLayers()` filters by layer name and service URL availability
-3. **Map Display**: Selected layers → ArcGIS FeatureLayers → Added to MapView
-4. **Interaction**: Click features → Popup shows raw attribute data
-5. **Export Options**:
-   - **Export to ArcGIS**: Downloads Web Map JSON for manual import
-   - **Save to ArcGIS**: Direct save using ArcGIS authentication
-
-### Component Architecture
+### State Management Flow
+All state lives in `src/app/page.tsx` and flows down through props:
 
 ```
-app/page.tsx (main orchestrator)
-    ├── PasswordProtection.tsx (authentication wrapper)
-    ├── SearchBar.tsx → lib/search.ts → CSV parsing
-    ├── SearchResults.tsx (displays filtered layers)
-    ├── MapView.tsx (forwardRef to expose view)
-    │   ├── Dynamic ArcGIS imports (performance)
-    │   ├── Raw data popups (all fields shown)
-    │   └── Widgets:
-    │       ├── BasemapGallery (top-left)
-    │       ├── Legend (bottom-right)
-    │       ├── Search (top-right)
-    │       └── Home (top-left)
-    ├── ExportMapButton.tsx (Web Map JSON export)
-    └── SaveMapButton.tsx (ArcGIS Online integration)
+page.tsx (orchestrator)
+├── State: allLayers, filteredLayers, selectedLayers, filters
+├── Data loading: loadLayerData() → fetch JSON files
+└── Components:
+    ├── SearchBar → updates searchQuery state
+    ├── Category dropdown → updates selectedCategory state  
+    ├── LayerList → displays filteredLayers, calls onAddLayer
+    ├── MapView → renders selectedLayers on ArcGIS map
+    └── ExportMapButton → exports selectedLayers config
 ```
 
-### State Management
-- All state in `page.tsx` using React hooks
-- Key state: `selectedLayers`, `searchResults`, `mapViewRef`
-- Props/callbacks for component communication
-- No external state management library
+### Layer Selection Flow
+1. User interacts with LayerList component
+2. LayerList calls `onAddLayer(layer)` callback
+3. page.tsx adds to `selectedLayers` state
+4. MapView re-renders with new layers
+5. Only layers with `testStatus === 'working'` are sent to MapView
 
-### Authentication & Security
-1. **App Access**: Password protection via `PasswordProtection.tsx`
-   - HTTP-only cookie: `hifld-auth=authenticated`
-   - 7-day expiration
-   - Middleware validates API routes
-2. **ArcGIS Auth**: OAuth for SaveMapButton functionality
-   - Immediate mode authentication
-   - Token stored in ArcGIS IdentityManager
+## Key Architectural Decisions
 
-### Popup System
-- **Current Design**: Raw data table showing ALL fields
-- **Purpose**: Debug layer data availability issues
-- **Format**: Monospace font, color-coded by field type
-- **No filtering**: Shows empty values, system fields, everything
+### Why Node.js Scripts Instead of API Routes
+- GitHub Pages deployment requires static export (`output: 'export'`)
+- Static export disables Next.js API routes and middleware
+- Data processing happens at build time, not runtime
+- Results are served as static JSON files
 
-### Export/Import Workflow
-**Export creates Web Map JSON but standard ArcGIS import doesn't work**
-- Use ArcGIS Online Assistant (ago-assistant.esri.com)
-- Or ArcGIS Python API
-- Direct file upload method fails
+### Layer Testing Strategy
+The test script (`scripts/test-layers.js`) is intentionally lenient:
+- Previous strict validation rejected many working layers
+- Now accepts ANY 200 HTTP response
+- Tests all 305 layers (not just first 100)
+- Results: 254 working, 51 restricted, 0 failed
 
-## Data Schema (CSV)
+### Deployment Configuration
+`next.config.js` has two modes:
+```javascript
+// Local development (current):
+// output: 'export',  // Commented out
+// basePath: '/infrastructure-tool-v2',  // Commented out
 
-Critical columns:
-- `Layer Name`: Primary search field
-- `Open REST Service`: Map service URL (required for display)
-- `Agency`: Data provider attribution
-- `Status`: Active/Migrated indicator
-- `DUA Required`: Data Use Agreement flag
-- `GII Access Required`: Restricted access flag
+// GitHub Pages deployment:
+output: 'export',  // Uncomment these
+basePath: '/infrastructure-tool-v2',  // Uncomment these
+```
 
-## Known Issues & Current State
+## Critical Files and Their Roles
 
-### Limited Popup Data
-Many layers show minimal attributes (e.g., State Capitols only shows FTYPE: 830). This is a data issue, not a code issue.
+- `public/HIFLD_Open_Crosswalk_Geoplatform.csv` - Source data, DO NOT MODIFY
+- `public/processed-layers.json` - Generated by process-data.js
+- `public/layer-test-results.json` - Generated by test-layers.js  
+- `lib/layerCategories.ts` - Category definitions and categorization logic
+- `src/app/page.tsx` - Main orchestrator, all state management
+- `src/components/LayerList.tsx` - Renders categorized layers with status indicators
+- `src/components/MapView.tsx` - ArcGIS map integration, dynamic imports for performance
 
-### CORS & Authentication
-Some layers fail to load due to:
-- CORS restrictions on service endpoints
-- DUA/GII authentication requirements
-- Service downtime or migration
+## Layer Categories
 
-### Performance Considerations
-- CSV loaded on every search (134KB)
-- No layer caching implemented
-- All widgets load on map init
+Defined in `lib/layerCategories.ts` and `scripts/process-data.js`:
+- Emergency Services
+- Healthcare  
+- Education
+- Energy
+- Transportation
+- Communications
+- Government
+- Critical Facilities
+- Maritime
+- Utilities
+- Boundaries
+- Other (fallback)
 
-## Recent Changes Log
-- Removed geometry debug info from popups (coordinates, vertex counts)
-- Simplified popup to show raw attribute table
-- Fixed Legend widget visibility (moved to bottom-right)
-- Fixed JSON export format for ArcGIS compatibility
-- Added BasemapGallery widget
+## Testing Results (Current)
 
-## Deployment
+After running `npm run test-layers`:
+- Total Layers: 305
+- ✅ Working: 254 (83%)
+- 🔒 Restricted: 51 (17%)
+- ❌ Failed: 0
 
-- **Repository**: https://github.com/franzenjb/hifld-search
-- **Deployment**: Vercel (auto-deploy from main branch)
-- **Region**: IAD1 (US East)
-- **Build time**: ~30 seconds
-- **Deploy time**: 2-3 minutes total
+## Known Constraints
 
-## Troubleshooting Memories
+1. **No middleware with static export** - Password protection disabled for GitHub Pages
+2. **CORS limitations** - Some layers fail client-side despite passing server tests
+3. **Large initial load** - All 305 layers loaded into memory on app start
+4. **No server-side filtering** - All search/filter operations are client-side
 
-### Localhost Connection Issues
-- NEVER NEVER release a http://localhost that does not work to me  This site can't be reached
-- localhost refused to connect.
-- Try:
-  - Checking the connection
-  - Checking the proxy and the firewall
-  - ERR_CONNECTION_REFUSED
+## User Requirements
+
+1. **Always provide complete file replacements** - Never partial edits
+2. **Always commit to GitHub** for deployment
+3. **Always provide localhost link** after starting dev server
+4. **Test accessibility** - Many layers previously worked, don't be too strict

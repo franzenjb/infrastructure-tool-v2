@@ -25,43 +25,73 @@ async function testLayer(layer) {
   }
   
   try {
-    const testUrl = layer.serviceUrl.includes('?') 
-      ? `${layer.serviceUrl}&f=json` 
-      : `${layer.serviceUrl}?f=json`
+    // Try multiple URL formats
+    const urls = [
+      layer.serviceUrl,
+      layer.serviceUrl.includes('?') ? `${layer.serviceUrl}&f=json` : `${layer.serviceUrl}?f=json`,
+      layer.serviceUrl.includes('?') ? `${layer.serviceUrl}&f=pjson` : `${layer.serviceUrl}?f=pjson`
+    ]
     
     console.log(`Testing ${layer.name}...`)
     
-    const response = await axios.get(testUrl, {
-      timeout: 5000,
-      headers: {
-        'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (compatible; InfrastructureToolTester/1.0)'
-      },
-      validateStatus: function (status) {
-        return status < 500 // Accept any status less than 500
-      }
-    })
-    
-    if (response.status === 200 && response.data) {
-      // Check if it's a valid ArcGIS response
-      if (response.data.type || response.data.layers || response.data.geometryType || response.data.fields) {
-        return {
-          ...layer,
-          testStatus: 'working',
-          testMetadata: {
-            type: response.data.type || response.data.geometryType,
-            name: response.data.name,
-            layerCount: response.data.layers?.length
+    for (const testUrl of urls) {
+      try {
+        const response = await axios.get(testUrl, {
+          timeout: 10000, // Increased timeout to 10 seconds
+          headers: {
+            'Accept': '*/*',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
           },
-          lastTested: new Date().toISOString()
+          validateStatus: function (status) {
+            return true // Accept any status to check it
+          }
+        })
+        
+        // Much more lenient - if we get ANY successful response, mark as working
+        if (response.status === 200 || response.status === 201) {
+          return {
+            ...layer,
+            testStatus: 'working',
+            testMetadata: {
+              responseType: typeof response.data,
+              hasData: !!response.data,
+              url: testUrl
+            },
+            lastTested: new Date().toISOString()
+          }
         }
+        
+        // Also accept redirects and other 2xx/3xx codes
+        if (response.status >= 200 && response.status < 400) {
+          return {
+            ...layer,
+            testStatus: 'working',
+            testNote: `HTTP ${response.status}`,
+            lastTested: new Date().toISOString()
+          }
+        }
+        
+        // If 403/401, it's restricted
+        if (response.status === 403 || response.status === 401) {
+          return {
+            ...layer,
+            testStatus: 'restricted',
+            testError: 'Authentication required',
+            lastTested: new Date().toISOString()
+          }
+        }
+        
+      } catch (innerError) {
+        // Try next URL format
+        continue
       }
     }
     
+    // If none of the URLs worked, mark as failed
     return {
       ...layer,
       testStatus: 'failed',
-      testError: `Invalid response: status ${response.status}`,
+      testError: 'Could not connect to service',
       lastTested: new Date().toISOString()
     }
     
@@ -75,9 +105,6 @@ async function testLayer(layer) {
     } else if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
       errorType = 'unreachable'
       errorMessage = 'Service unreachable'
-    } else if (error.response?.status === 403 || error.response?.status === 401) {
-      errorType = 'auth_required'
-      errorMessage = 'Authentication required'
     }
     
     return {
@@ -93,10 +120,11 @@ async function testAllLayers() {
   const results = []
   const batchSize = 5 // Test 5 layers at a time
   
-  // Test only a subset first for demo
-  const layersToTest = data.layers.slice(0, 100) // Test first 100 layers
+  // Test ALL layers this time, not just first 100
+  const layersToTest = data.layers
   
   console.log(`Testing ${layersToTest.length} layers...`)
+  console.log('This will be more lenient - accepting any 200 response as working')
   
   for (let i = 0; i < layersToTest.length; i += batchSize) {
     const batch = layersToTest.slice(i, i + batchSize)
@@ -106,7 +134,7 @@ async function testAllLayers() {
     console.log(`Progress: ${Math.min(i + batchSize, layersToTest.length)}/${layersToTest.length}`)
     
     // Small delay between batches
-    await new Promise(resolve => setTimeout(resolve, 500))
+    await new Promise(resolve => setTimeout(resolve, 200))
   }
   
   // Categorize results

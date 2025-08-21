@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import PasswordProtection from '@/components/PasswordProtection'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'HIFLD Search - Critical Infrastructure Mapping',
-  description: 'Search and visualize Homeland Infrastructure Foundation-Level Data (HIFLD) layers',
+  title: 'Infrastructure Search Tool v2',
+  description: 'Search and visualize HIFLD infrastructure layers with testing and categorization',
 }
 
 export default function RootLayout({
@@ -18,9 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <PasswordProtection>
-          {children}
-        </PasswordProtection>
+        {children}
       </body>
     </html>
   )
