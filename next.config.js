@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/infrastructure-tool-v2',
+  basePath: process.env.NODE_ENV === 'production' ? '/infrastructure-tool-v2' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/infrastructure-tool-v2/' : '',
   images: {
     unoptimized: true
   },
@@ -11,6 +12,9 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true
+  },
+  publicRuntimeConfig: {
+    basePath: process.env.NODE_ENV === 'production' ? '/infrastructure-tool-v2' : ''
   }
 }
 

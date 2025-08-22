@@ -44,9 +44,13 @@ export default function Home() {
 
   const loadLayerData = async () => {
     try {
+      // Detect if we're on GitHub Pages by checking the URL
+      const isGitHubPages = window.location.hostname.includes('github.io')
+      const basePath = isGitHubPages ? '/infrastructure-tool-v2' : ''
+      
       // Try to load test results first, fallback to processed data
-      const response = await fetch('/layer-test-results.json').catch(() => 
-        fetch('/processed-layers.json')
+      const response = await fetch(`${basePath}/layer-test-results.json`).catch(() => 
+        fetch(`${basePath}/processed-layers.json`)
       )
       
       if (response.ok) {
