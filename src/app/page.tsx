@@ -7,6 +7,7 @@ import MapView, { type MapViewRef } from '@/components/MapView'
 import StatusIndicator from '@/components/StatusIndicator'
 import ExportMapButton from '@/components/ExportMapButton'
 import ExportGeoJSONButton from '@/components/ExportGeoJSONButton'
+import CreateFeatureLayerButton from '@/components/CreateFeatureLayerButton'
 
 export interface EnhancedLayer {
   id: number
@@ -215,34 +216,43 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="space-y-2">
-                <p className="text-xs text-gray-600 text-center">Choose export format:</p>
-                <div className="flex gap-2">
-                  <div className="flex-1">
-                    <ExportMapButton 
-                      layers={selectedLayers.map(l => ({
-                        name: l.name,
-                        serviceUrl: l.serviceUrl || '',
-                        agency: l.agency,
-                        status: l.status
-                      }))} 
-                      viewRef={mapViewRef.current?.getView()} 
-                      className="w-full text-sm py-2"
-                    />
-                    <p className="text-xs text-gray-500 mt-1 text-center">Links to live data</p>
-                  </div>
-                  <div className="flex-1">
-                    <ExportGeoJSONButton 
-                      layers={selectedLayers.map(l => ({
-                        name: l.name,
-                        serviceUrl: l.serviceUrl || '',
-                        agency: l.agency,
-                        status: l.status
-                      }))} 
-                      viewRef={mapViewRef.current?.getView()} 
-                      className="w-full text-sm py-2"
-                    />
-                    <p className="text-xs text-gray-500 mt-1 text-center">Static extent box</p>
+              <div className="space-y-3">
+                <CreateFeatureLayerButton 
+                  layers={selectedLayers.map(l => ({
+                    name: l.name,
+                    serviceUrl: l.serviceUrl || '',
+                    agency: l.agency,
+                    status: l.status
+                  }))} 
+                  className="w-full text-sm py-3"
+                />
+                <div className="border-t pt-3">
+                  <p className="text-xs text-gray-600 text-center mb-2">Other export options:</p>
+                  <div className="flex gap-2">
+                    <div className="flex-1">
+                      <ExportMapButton 
+                        layers={selectedLayers.map(l => ({
+                          name: l.name,
+                          serviceUrl: l.serviceUrl || '',
+                          agency: l.agency,
+                          status: l.status
+                        }))} 
+                        viewRef={mapViewRef.current?.getView()} 
+                        className="w-full text-xs py-1"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <ExportGeoJSONButton 
+                        layers={selectedLayers.map(l => ({
+                          name: l.name,
+                          serviceUrl: l.serviceUrl || '',
+                          agency: l.agency,
+                          status: l.status
+                        }))} 
+                        viewRef={mapViewRef.current?.getView()} 
+                        className="w-full text-xs py-1"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
