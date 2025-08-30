@@ -139,12 +139,12 @@ export default function LayerList({
                         <button
                           onClick={() => {
                             navigator.clipboard.writeText(layer.serviceUrl || '')
-                            alert(`URL copied!\n\nTo add to ArcGIS:\n1. Open your map in ArcGIS Online\n2. Click Add → Add Layer from Web\n3. Paste this URL\n4. Click Add Layer`)
+                            alert(`✅ URL Copied to Clipboard!\n\n${layer.name}\n\nTO ADD TO YOUR ARCGIS MAP:\n\n1. Go to ArcGIS Online and open your map\n2. Click the "Add" button\n3. Select "Add layer from URL"\n4. Paste the URL you just copied\n5. For layer type, select "ArcGIS Server web service"\n6. Click "Add to map"\n\nThe layer will appear on your map!\n\nNOTE: Some layers may require authentication.`)
                           }}
-                          className="px-2 py-1 bg-gray-600 text-white text-xs rounded hover:bg-gray-700"
-                          title="Copy service URL"
+                          className="px-2 py-1 bg-gray-600 text-white text-xs rounded hover:bg-gray-700 flex items-center gap-1"
+                          title="Copy layer URL for ArcGIS"
                         >
-                          Copy URL
+                          📋 Copy URL
                         </button>
                       )}
                       

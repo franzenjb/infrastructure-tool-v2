@@ -213,14 +213,20 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="bg-blue-50 p-3 rounded-lg">
-                <p className="text-sm text-blue-800 font-semibold mb-1">How to use these layers:</p>
-                <ol className="text-xs text-blue-700 list-decimal list-inside space-y-1">
-                  <li>Click "Copy URL" on any layer</li>
-                  <li>In ArcGIS Online, open your map</li>
-                  <li>Click Add → Add Layer from Web</li>
-                  <li>Paste the URL and click Add Layer</li>
+              <div className="bg-blue-50 border-2 border-blue-300 p-4 rounded-lg">
+                <h3 className="text-sm font-bold text-blue-900 mb-2 flex items-center gap-2">
+                  <span className="text-lg">📋</span>
+                  How to Add Layers to ArcGIS:
+                </h3>
+                <ol className="text-sm text-blue-800 list-decimal list-inside space-y-2">
+                  <li><strong>Preview here:</strong> Click "Add" to see on map</li>
+                  <li><strong>Copy URL:</strong> Click "📋 Copy URL" button</li>
+                  <li><strong>In ArcGIS:</strong> Add → Add layer from URL</li>
+                  <li><strong>Paste & Add:</strong> Paste URL and click "Add to map"</li>
                 </ol>
+                <p className="text-xs text-blue-600 mt-3 italic">
+                  Each layer URL can be added to any ArcGIS map!
+                </p>
               </div>
             </div>
           )}
