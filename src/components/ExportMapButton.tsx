@@ -210,17 +210,29 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <h3 className="text-xl font-semibold mb-4">Export Web Map for ArcGIS Online</h3>
             
-            <div className="mb-4 p-4 bg-blue-50 rounded-lg">
-              <p className="text-sm text-blue-800 font-medium mb-2">
-                This will create a Web Map JSON file for ArcGIS Online
-              </p>
-              <ol className="list-decimal list-inside text-sm text-blue-700 space-y-1">
-                <li>Download the Web Map JSON file</li>
-                <li>Go to ArcGIS Online and click &quot;Content&quot;</li>
-                <li>Click &quot;New item&quot; → &quot;Your device&quot;</li>
-                <li className="font-semibold">IMPORTANT: Select Type: &quot;Web Map&quot; (NOT GeoJSON)</li>
-                <li>You must manually enter the title, summary, and tags in ArcGIS</li>
-              </ol>
+            <div className="mb-4 space-y-4">
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                <h4 className="text-sm font-semibold text-amber-800 mb-2">What is a Web Map JSON?</h4>
+                <p className="text-sm text-amber-700">
+                  This creates a configuration file that tells ArcGIS which online services to connect to. 
+                  It does NOT contain the actual data - instead it contains URLs pointing to where the data lives online.
+                  Think of it like a TV channel guide rather than recorded shows.
+                </p>
+              </div>
+              
+              <div className="p-4 bg-blue-50 rounded-lg">
+                <p className="text-sm text-blue-800 font-medium mb-2">
+                  How to import to ArcGIS Online:
+                </p>
+                <ol className="list-decimal list-inside text-sm text-blue-700 space-y-1">
+                  <li>Download the Web Map JSON file</li>
+                  <li>Go to ArcGIS Online and click &quot;Content&quot;</li>
+                  <li>Click &quot;New item&quot; → &quot;Your device&quot;</li>
+                  <li className="font-semibold">IMPORTANT: Select Type: &quot;Web Map&quot; (NOT GeoJSON)</li>
+                  <li>You must manually enter the title, summary, and tags in ArcGIS</li>
+                  <li>ArcGIS will then connect to the online services to display the data</li>
+                </ol>
+              </div>
             </div>
 
             <div className="space-y-4">

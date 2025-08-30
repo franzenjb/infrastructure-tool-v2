@@ -9,6 +9,13 @@ interface ExportGeoJSONButtonProps {
   className?: string
 }
 
+// Convert Web Mercator to WGS84
+function webMercatorToWGS84(x: number, y: number): [number, number] {
+  const lon = (x / 20037508.34) * 180
+  const lat = (Math.atan(Math.exp((y / 20037508.34) * Math.PI)) * 360 / Math.PI) - 90
+  return [lon, lat]
+}
+
 export default function ExportGeoJSONButton({ layers, viewRef, className = '' }: ExportGeoJSONButtonProps) {
   const [showDialog, setShowDialog] = useState(false)
   const [mapTitle, setMapTitle] = useState('')
@@ -94,18 +101,46 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
 
     try {
       // Get current map extent
-      const extent = viewRef.extent ? {
-        xmin: viewRef.extent.xmin,
-        ymin: viewRef.extent.ymin,
-        xmax: viewRef.extent.xmax,
-        ymax: viewRef.extent.ymax,
-        spatialReference: {
-          wkid: viewRef.extent.spatialReference?.wkid || 4326
+      let coordinates
+      
+      if (viewRef.extent) {
+        const extent = viewRef.extent
+        
+        // Check if coordinates are in Web Mercator (WKID 102100 or 3857)
+        if (extent.spatialReference?.wkid === 102100 || extent.spatialReference?.wkid === 3857) {
+          // Convert from Web Mercator to WGS84
+          const [xmin, ymin] = webMercatorToWGS84(extent.xmin, extent.ymin)
+          const [xmax, ymax] = webMercatorToWGS84(extent.xmax, extent.ymax)
+          
+          coordinates = [[
+            [xmin, ymin],
+            [xmax, ymin],
+            [xmax, ymax],
+            [xmin, ymax],
+            [xmin, ymin]
+          ]]
+        } else {
+          // Already in geographic coordinates
+          coordinates = [[
+            [extent.xmin, extent.ymin],
+            [extent.xmax, extent.ymin],
+            [extent.xmax, extent.ymax],
+            [extent.xmin, extent.ymax],
+            [extent.xmin, extent.ymin]
+          ]]
         }
-      } : null
+      } else {
+        // Default to USA bounds
+        coordinates = [[
+          [-125, 24],
+          [-66, 24],
+          [-66, 49],
+          [-125, 49],
+          [-125, 24]
+        ]]
+      }
 
-      // Create a simple GeoJSON structure with layer references
-      // This format is better for ArcGIS Online as it doesn't require fetching all features
+      // Create a simple, standard GeoJSON structure
       const geojson = {
         type: "FeatureCollection",
         features: [
@@ -113,39 +148,17 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
             type: "Feature",
             geometry: {
               type: "Polygon",
-              coordinates: extent ? [[
-                [extent.xmin, extent.ymin],
-                [extent.xmax, extent.ymin],
-                [extent.xmax, extent.ymax],
-                [extent.xmin, extent.ymax],
-                [extent.xmin, extent.ymin]
-              ]] : [[
-                [-180, -90],
-                [180, -90],
-                [180, 90],
-                [-180, 90],
-                [-180, -90]
-              ]]
+              coordinates: coordinates
             },
             properties: {
-              title: mapTitle,
-              summary: mapSummary,
-              tags: mapTags.join(', '),
+              name: mapTitle,
+              description: mapSummary,
               layerCount: layers.length,
-              layers: layers.map(l => ({
-                name: l.name,
-                agency: l.agency,
-                url: l.serviceUrl,
-                status: l.status
-              }))
+              exportDate: new Date().toISOString(),
+              source: "HIFLD Infrastructure Tool v2"
             }
           }
-        ],
-        metadata: {
-          title: mapTitle,
-          description: mapSummary,
-          tags: mapTags
-        }
+        ]
       }
 
       // Create blob and download
@@ -162,7 +175,7 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
       URL.revokeObjectURL(url)
 
       // Show success message
-      alert(`GeoJSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "GeoJSON" (NOT Web Map)\n5. You must manually enter the title (no colons), summary, and tags\n\nThis is a GeoJSON file with proper structure.`)
+      alert(`GeoJSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "GeoJSON" (NOT Web Map)\n5. You must manually enter the title (no colons), summary, and tags\n\nThis creates a simple polygon showing your map extent.`)
       
       // Close dialog
       setShowDialog(false)
@@ -194,17 +207,37 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <h3 className="text-xl font-semibold mb-4">Export GeoJSON for ArcGIS Online</h3>
             
-            <div className="mb-4 p-4 bg-green-50 rounded-lg">
-              <p className="text-sm text-green-800 font-medium mb-2">
-                This will create a GeoJSON file with proper structure for ArcGIS Online
-              </p>
-              <ul className="list-disc list-inside text-sm text-green-700 space-y-1">
-                <li>Includes required &apos;type&apos; field set to &quot;FeatureCollection&quot;</li>
-                <li>Creates a bounding box feature with layer references</li>
-                <li>Includes metadata (but ArcGIS won&apos;t auto-populate it)</li>
-                <li>Compatible with ArcGIS Online import</li>
-                <li>Note: Title cannot contain colons in ArcGIS</li>
-              </ul>
+            <div className="mb-4 space-y-4">
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                <h4 className="text-sm font-semibold text-amber-800 mb-2">What is a GeoJSON file?</h4>
+                <p className="text-sm text-amber-700">
+                  This creates a data file containing actual geographic features (shapes on a map). 
+                  Currently, it exports a rectangle showing your map&apos;s viewing area plus information about which layers you selected.
+                  It does NOT download all the features from each layer (that would be too slow).
+                </p>
+              </div>
+              
+              <div className="p-4 bg-green-50 rounded-lg">
+                <p className="text-sm text-green-800 font-medium mb-2">
+                  How to import to ArcGIS Online:
+                </p>
+                <ol className="list-decimal list-inside text-sm text-green-700 space-y-1">
+                  <li>Download the GeoJSON file</li>
+                  <li>Go to ArcGIS Online and click &quot;Content&quot;</li>
+                  <li>Click &quot;New item&quot; → &quot;Your device&quot;</li>
+                  <li className="font-semibold">IMPORTANT: Select Type: &quot;GeoJSON&quot; (NOT Web Map)</li>
+                  <li>You must manually enter the title (no colons!), summary, and tags</li>
+                  <li>ArcGIS will create a feature layer with your extent rectangle</li>
+                </ol>
+              </div>
+              
+              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <h4 className="text-sm font-semibold text-blue-800 mb-2">When to use each format:</h4>
+                <div className="text-sm text-blue-700 space-y-2">
+                  <p><strong>Use Web Map JSON when:</strong> You want an interactive map that connects to live data sources</p>
+                  <p><strong>Use GeoJSON when:</strong> You need a simple geographic reference or want to mark an area of interest</p>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -281,10 +314,10 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
               <div className="bg-gray-50 p-3 rounded-lg">
                 <p className="text-sm font-medium text-gray-700 mb-2">GeoJSON will include:</p>
                 <ul className="space-y-1 text-sm text-gray-600">
-                  <li>✓ Proper GeoJSON structure with &apos;type&apos;: &quot;FeatureCollection&quot;</li>
-                  <li>✓ Map extent as a bounding box</li>
-                  <li>✓ Metadata with title, summary, and tags</li>
-                  <li>✓ References to all {layers.length} selected layers</li>
+                  <li>✓ Standard GeoJSON structure (no custom fields)</li>
+                  <li>✓ Map extent converted to WGS84 coordinates</li>
+                  <li>✓ Simple properties that ArcGIS can read</li>
+                  <li>✓ One polygon feature showing your view area</li>
                 </ul>
               </div>
             </div>

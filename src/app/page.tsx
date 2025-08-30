@@ -215,27 +215,36 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="flex gap-2">
-                <ExportMapButton 
-                  layers={selectedLayers.map(l => ({
-                    name: l.name,
-                    serviceUrl: l.serviceUrl || '',
-                    agency: l.agency,
-                    status: l.status
-                  }))} 
-                  viewRef={mapViewRef.current?.getView()} 
-                  className="flex-1 text-sm py-2"
-                />
-                <ExportGeoJSONButton 
-                  layers={selectedLayers.map(l => ({
-                    name: l.name,
-                    serviceUrl: l.serviceUrl || '',
-                    agency: l.agency,
-                    status: l.status
-                  }))} 
-                  viewRef={mapViewRef.current?.getView()} 
-                  className="flex-1 text-sm py-2"
-                />
+              <div className="space-y-2">
+                <p className="text-xs text-gray-600 text-center">Choose export format:</p>
+                <div className="flex gap-2">
+                  <div className="flex-1">
+                    <ExportMapButton 
+                      layers={selectedLayers.map(l => ({
+                        name: l.name,
+                        serviceUrl: l.serviceUrl || '',
+                        agency: l.agency,
+                        status: l.status
+                      }))} 
+                      viewRef={mapViewRef.current?.getView()} 
+                      className="w-full text-sm py-2"
+                    />
+                    <p className="text-xs text-gray-500 mt-1 text-center">Links to live data</p>
+                  </div>
+                  <div className="flex-1">
+                    <ExportGeoJSONButton 
+                      layers={selectedLayers.map(l => ({
+                        name: l.name,
+                        serviceUrl: l.serviceUrl || '',
+                        agency: l.agency,
+                        status: l.status
+                      }))} 
+                      viewRef={mapViewRef.current?.getView()} 
+                      className="w-full text-sm py-2"
+                    />
+                    <p className="text-xs text-gray-500 mt-1 text-center">Static extent box</p>
+                  </div>
+                </div>
               </div>
             </div>
           )}
