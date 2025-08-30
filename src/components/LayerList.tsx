@@ -134,19 +134,34 @@ export default function LayerList({
                       </div>
                     </div>
                     
-                    {isWorkable && (
-                      <button
-                        onClick={() => isSelected ? onRemoveLayer(layer.id) : onAddLayer(layer)}
-                        className={clsx(
-                          "ml-2 px-3 py-1 rounded text-sm font-medium transition-colors",
-                          isSelected 
-                            ? "bg-red-500 text-white hover:bg-red-600"
-                            : "bg-blue-500 text-white hover:bg-blue-600"
-                        )}
-                      >
-                        {isSelected ? 'Remove' : 'Add'}
-                      </button>
-                    )}
+                    <div className="flex items-center gap-2 ml-2">
+                      {layer.serviceUrl && (
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(layer.serviceUrl || '')
+                            alert(`URL copied!\n\nTo add to ArcGIS:\n1. Open your map in ArcGIS Online\n2. Click Add → Add Layer from Web\n3. Paste this URL\n4. Click Add Layer`)
+                          }}
+                          className="px-2 py-1 bg-gray-600 text-white text-xs rounded hover:bg-gray-700"
+                          title="Copy service URL"
+                        >
+                          Copy URL
+                        </button>
+                      )}
+                      
+                      {isWorkable && (
+                        <button
+                          onClick={() => isSelected ? onRemoveLayer(layer.id) : onAddLayer(layer)}
+                          className={clsx(
+                            "px-3 py-1 rounded text-sm font-medium transition-colors",
+                            isSelected 
+                              ? "bg-red-500 text-white hover:bg-red-600"
+                              : "bg-blue-500 text-white hover:bg-blue-600"
+                          )}
+                        >
+                          {isSelected ? 'Remove' : 'Add'}
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               )
