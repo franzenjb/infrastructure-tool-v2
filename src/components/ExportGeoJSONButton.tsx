@@ -31,7 +31,7 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
         const layerNames = layers.slice(0, 3).map(l => l.name).join('; ')
         const moreText = layers.length > 3 ? `; and ${layers.length - 3} more layers` : ''
         const agencies = Array.from(new Set(layers.map(l => l.agency))).join(', ')
-        setMapSummary(`This map contains HIFLD infrastructure data including: ${layerNames}${moreText}. Data sources: ${agencies}.`)
+        setMapSummary(`This map contains HIFLD infrastructure data including - ${layerNames}${moreText}. Data sources are ${agencies}.`)
       }
 
       // Auto-populate tags if not already set
@@ -162,7 +162,7 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
       URL.revokeObjectURL(url)
 
       // Show success message
-      alert(`GeoJSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "GeoJSON" (NOT Web Map)\n5. The title, summary and tags will auto-populate from the file\n\nThis is a GeoJSON file with proper structure.`)
+      alert(`GeoJSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "GeoJSON" (NOT Web Map)\n5. You must manually enter the title (no colons), summary, and tags\n\nThis is a GeoJSON file with proper structure.`)
       
       // Close dialog
       setShowDialog(false)
@@ -201,8 +201,9 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
               <ul className="list-disc list-inside text-sm text-green-700 space-y-1">
                 <li>Includes required &apos;type&apos; field set to &quot;FeatureCollection&quot;</li>
                 <li>Creates a bounding box feature with layer references</li>
-                <li>Adds metadata for title, summary, and tags</li>
+                <li>Includes metadata (but ArcGIS won&apos;t auto-populate it)</li>
                 <li>Compatible with ArcGIS Online import</li>
+                <li>Note: Title cannot contain colons in ArcGIS</li>
               </ul>
             </div>
 
@@ -210,6 +211,7 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Title <span className="text-red-500">*</span>
+                  <span className="text-xs text-gray-500 ml-2">(Note: ArcGIS doesn't allow colons)</span>
                 </label>
                 <input
                   type="text"

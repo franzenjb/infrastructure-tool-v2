@@ -23,14 +23,14 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
       if (!mapTitle) {
         const primaryLayer = layers[0].name
         const additionalCount = layers.length > 1 ? ` + ${layers.length - 1} more` : ''
-        setMapTitle(`HIFLD Map: ${primaryLayer}${additionalCount}`)
+        setMapTitle(`HIFLD Map - ${primaryLayer}${additionalCount}`)
       }
 
       // Auto-populate description if not already set
       if (!mapDescription) {
         const layerNames = layers.slice(0, 3).map(l => l.name).join(', ')
         const moreText = layers.length > 3 ? `, and ${layers.length - 3} more layers` : ''
-        setMapDescription(`This map contains HIFLD infrastructure data including: ${layerNames}${moreText}. Data sources: ${Array.from(new Set(layers.map(l => l.agency))).join(', ')}.`)
+        setMapDescription(`This map contains HIFLD infrastructure data including - ${layerNames}${moreText}. Data sources are ${Array.from(new Set(layers.map(l => l.agency))).join(', ')}.`)
       }
 
       // Auto-populate tags if not already set
@@ -178,7 +178,7 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
       URL.revokeObjectURL(url)
 
       // Show success message with instructions
-      alert(`Web Map JSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "Web Map" (NOT GeoJSON)\n5. Fill in the title, tags and click "Save"\n\nThis is a Web Map JSON file, not a GeoJSON file.`)
+      alert(`Web Map JSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "Web Map" (NOT GeoJSON)\n5. Manually enter the title (no colons allowed), summary, and tags\n6. Click "Save"\n\nThis is a Web Map JSON file, not a GeoJSON file.`)
       
       // Close dialog
       setShowDialog(false)
@@ -219,7 +219,7 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
                 <li>Go to ArcGIS Online and click &quot;Content&quot;</li>
                 <li>Click &quot;New item&quot; → &quot;Your device&quot;</li>
                 <li className="font-semibold">IMPORTANT: Select Type: &quot;Web Map&quot; (NOT GeoJSON)</li>
-                <li>The title and tags from this form will NOT auto-populate in ArcGIS</li>
+                <li>You must manually enter the title, summary, and tags in ArcGIS</li>
               </ol>
             </div>
 
@@ -227,6 +227,7 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Map Title <span className="text-red-500">*</span>
+                  <span className="text-xs text-gray-500 ml-2">(Note: ArcGIS doesn't allow colons)</span>
                 </label>
                 <input
                   type="text"
