@@ -5,6 +5,7 @@ import SearchBar from '@/components/SearchBar'
 import LayerList from '@/components/LayerList'
 import MapView, { type MapViewRef } from '@/components/MapView'
 import StatusIndicator from '@/components/StatusIndicator'
+import FEMATab from '@/components/FEMATab'
 
 export interface EnhancedLayer {
   id: number
@@ -21,6 +22,7 @@ export interface EnhancedLayer {
 }
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState<'hifld' | 'fema'>('hifld')
   const [searchQuery, setSearchQuery] = useState('')
   const [allLayers, setAllLayers] = useState<EnhancedLayer[]>([])
   const [filteredLayers, setFilteredLayers] = useState<EnhancedLayer[]>([])
@@ -138,8 +140,34 @@ export default function Home() {
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar */}
         <aside className="w-96 bg-white border-r border-gray-200 flex flex-col">
-          {/* Search and Filters */}
-          <div className="p-4 border-b border-gray-200">
+          {/* Tab Navigation */}
+          <div className="flex border-b border-gray-200">
+            <button
+              onClick={() => setActiveTab('hifld')}
+              className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+                activeTab === 'hifld'
+                  ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-500'
+                  : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+              }`}
+            >
+              HIFLD Layers
+            </button>
+            <button
+              onClick={() => setActiveTab('fema')}
+              className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+                activeTab === 'fema'
+                  ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-500'
+                  : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+              }`}
+            >
+              FEMA RAPT
+            </button>
+          </div>
+
+          {activeTab === 'hifld' ? (
+            <>
+              {/* Search and Filters */}
+              <div className="p-4 border-b border-gray-200">
             <SearchBar 
               value={searchQuery}
               onChange={setSearchQuery}
@@ -175,19 +203,23 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Layer List */}
-          <div className="flex-1 overflow-y-auto">
-            <LayerList 
-              layers={filteredLayers}
-              selectedLayers={selectedLayers}
-              onAddLayer={handleAddLayer}
-              onRemoveLayer={handleRemoveLayer}
-              isLoading={isLoading}
-            />
-          </div>
+              {/* Layer List */}
+              <div className="flex-1 overflow-y-auto">
+                <LayerList 
+                  layers={filteredLayers}
+                  selectedLayers={selectedLayers}
+                  onAddLayer={handleAddLayer}
+                  onRemoveLayer={handleRemoveLayer}
+                  isLoading={isLoading}
+                />
+              </div>
+            </>
+          ) : (
+            <FEMATab />
+          )}
 
-          {/* Selected Layers Summary */}
-          {selectedLayers.length > 0 && (
+          {/* Selected Layers Summary - Only for HIFLD tab */}
+          {activeTab === 'hifld' && selectedLayers.length > 0 && (
             <div className="p-4 border-t border-gray-200 bg-gray-50">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-semibold text-gray-700">
