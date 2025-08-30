@@ -162,7 +162,7 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
       URL.revokeObjectURL(url)
 
       // Show success message
-      alert(`GeoJSON exported successfully!\n\nThe file includes:\n- Proper GeoJSON structure with 'type': 'FeatureCollection'\n- Map extent as a bounding box feature\n- Metadata with title, summary, and tags\n- References to ${layers.length} layers\n\nYou can now import this into ArcGIS Online.`)
+      alert(`GeoJSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "GeoJSON" (NOT Web Map)\n5. The title, summary and tags will auto-populate from the file\n\nThis is a GeoJSON file with proper structure.`)
       
       // Close dialog
       setShowDialog(false)
@@ -181,7 +181,7 @@ export default function ExportGeoJSONButton({ layers, viewRef, className = '' }:
       <button
         onClick={() => setShowDialog(true)}
         className={`bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2 ${className}`}
-        title="Export as GeoJSON for ArcGIS"
+        title="Export as GeoJSON (select 'GeoJSON' type in ArcGIS)"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

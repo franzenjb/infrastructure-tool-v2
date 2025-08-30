@@ -178,7 +178,7 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
       URL.revokeObjectURL(url)
 
       // Show success message with instructions
-      alert(`Web Map exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. Select Type: "Web Map"\n5. Add tags and click "Save"\n\nAlternatively, use ArcGIS Assistant for more control.`)
+      alert(`Web Map JSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "Web Map" (NOT GeoJSON)\n5. Fill in the title, tags and click "Save"\n\nThis is a Web Map JSON file, not a GeoJSON file.`)
       
       // Close dialog
       setShowDialog(false)
@@ -197,12 +197,12 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
       <button
         onClick={() => setShowDialog(true)}
         className={`bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 ${className}`}
-        title="Export map for ArcGIS Online"
+        title="Export as Web Map JSON (select 'Web Map' type in ArcGIS)"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
-        Export to ArcGIS
+        Export Web Map
       </button>
 
       {showDialog && (
@@ -212,13 +212,14 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
             
             <div className="mb-4 p-4 bg-blue-50 rounded-lg">
               <p className="text-sm text-blue-800 font-medium mb-2">
-                This will create a Web Map JSON file that you can import directly into ArcGIS Online
+                This will create a Web Map JSON file for ArcGIS Online
               </p>
               <ol className="list-decimal list-inside text-sm text-blue-700 space-y-1">
-                <li>Download the JSON file</li>
+                <li>Download the Web Map JSON file</li>
                 <li>Go to ArcGIS Online and click &quot;Content&quot;</li>
                 <li>Click &quot;New item&quot; → &quot;Your device&quot;</li>
-                <li>Select the JSON file and choose Type: &quot;Web Map&quot;</li>
+                <li className="font-semibold">IMPORTANT: Select Type: &quot;Web Map&quot; (NOT GeoJSON)</li>
+                <li>The title and tags from this form will NOT auto-populate in ArcGIS</li>
               </ol>
             </div>
 
