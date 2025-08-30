@@ -5,10 +5,6 @@ import SearchBar from '@/components/SearchBar'
 import LayerList from '@/components/LayerList'
 import MapView, { type MapViewRef } from '@/components/MapView'
 import StatusIndicator from '@/components/StatusIndicator'
-import ExportMapButton from '@/components/ExportMapButton'
-import ExportGeoJSONButton from '@/components/ExportGeoJSONButton'
-import CreateFeatureLayerButton from '@/components/CreateFeatureLayerButton'
-import AddLayersToArcGISButton from '@/components/AddLayersToArcGISButton'
 
 export interface EnhancedLayer {
   id: number
@@ -217,16 +213,14 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="space-y-3">
-                <AddLayersToArcGISButton 
-                  layers={selectedLayers.map(l => ({
-                    name: l.name,
-                    serviceUrl: l.serviceUrl || '',
-                    agency: l.agency,
-                    status: l.status
-                  }))} 
-                  className="w-full text-sm py-3 font-semibold"
-                />
+              <div className="bg-blue-50 p-3 rounded-lg">
+                <p className="text-sm text-blue-800 font-semibold mb-1">How to use these layers:</p>
+                <ol className="text-xs text-blue-700 list-decimal list-inside space-y-1">
+                  <li>Click "Copy URL" on any layer</li>
+                  <li>In ArcGIS Online, open your map</li>
+                  <li>Click Add → Add Layer from Web</li>
+                  <li>Paste the URL and click Add Layer</li>
+                </ol>
               </div>
             </div>
           )}
