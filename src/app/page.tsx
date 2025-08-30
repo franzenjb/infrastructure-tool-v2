@@ -6,6 +6,7 @@ import LayerList from '@/components/LayerList'
 import MapView, { type MapViewRef } from '@/components/MapView'
 import StatusIndicator from '@/components/StatusIndicator'
 import ExportMapButton from '@/components/ExportMapButton'
+import ExportGeoJSONButton from '@/components/ExportGeoJSONButton'
 
 export interface EnhancedLayer {
   id: number
@@ -27,7 +28,7 @@ export default function Home() {
   const [filteredLayers, setFilteredLayers] = useState<EnhancedLayer[]>([])
   const [selectedLayers, setSelectedLayers] = useState<EnhancedLayer[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
-  const [showWorkingOnly, setShowWorkingOnly] = useState(false)
+  const [showWorkingOnly, setShowWorkingOnly] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const [stats, setStats] = useState<any>(null)
   const mapViewRef = useRef<MapViewRef>(null)
@@ -214,16 +215,28 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <ExportMapButton 
-                layers={selectedLayers.map(l => ({
-                  name: l.name,
-                  serviceUrl: l.serviceUrl || '',
-                  agency: l.agency,
-                  status: l.status
-                }))} 
-                viewRef={mapViewRef.current?.getView()} 
-                className="w-full text-sm py-2"
-              />
+              <div className="flex gap-2">
+                <ExportMapButton 
+                  layers={selectedLayers.map(l => ({
+                    name: l.name,
+                    serviceUrl: l.serviceUrl || '',
+                    agency: l.agency,
+                    status: l.status
+                  }))} 
+                  viewRef={mapViewRef.current?.getView()} 
+                  className="flex-1 text-sm py-2"
+                />
+                <ExportGeoJSONButton 
+                  layers={selectedLayers.map(l => ({
+                    name: l.name,
+                    serviceUrl: l.serviceUrl || '',
+                    agency: l.agency,
+                    status: l.status
+                  }))} 
+                  viewRef={mapViewRef.current?.getView()} 
+                  className="flex-1 text-sm py-2"
+                />
+              </div>
             </div>
           )}
         </aside>
