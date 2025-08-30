@@ -31,13 +31,13 @@ npm run build
 # Run linter
 npm run lint
 
-# Deploy to GitHub Pages (uncomment export/basePath in next.config.js first)
+# Deploy to GitHub Pages (happens automatically via GitHub Actions on push to main)
 git push origin main
 ```
 
 ## Data Processing Pipeline Architecture
 
-The application uses a two-stage data processing pipeline that must be understood to make architectural changes:
+The application uses a three-stage data processing pipeline that must be understood to make architectural changes:
 
 ### Stage 1: CSV Processing (`scripts/process-data.js`)
 1. Reads `public/HIFLD_Open_Crosswalk_Geoplatform.csv` (305 infrastructure layers)
@@ -78,7 +78,8 @@ page.tsx (orchestrator)
     ├── Category dropdown → updates selectedCategory state  
     ├── LayerList → displays filteredLayers, calls onAddLayer
     ├── MapView → renders selectedLayers on ArcGIS map
-    └── ExportMapButton → exports selectedLayers config
+    ├── ExportMapButton → exports Web Map JSON config
+    └── ExportGeoJSONButton → exports GeoJSON extent
 ```
 
 ### Layer Selection Flow
@@ -87,6 +88,22 @@ page.tsx (orchestrator)
 3. page.tsx adds to `selectedLayers` state
 4. MapView re-renders with new layers
 5. Only layers with `testStatus === 'working'` are sent to MapView
+
+## Export Functionality
+
+The app provides two export formats for ArcGIS Online:
+
+### Web Map JSON (Blue Button)
+- Creates a configuration file with layer references/URLs
+- Does NOT contain actual geographic data
+- Tells ArcGIS which online services to connect to
+- Use when: Creating interactive maps with live data connections
+
+### GeoJSON (Green Button)
+- Creates a file with actual geographic features
+- Currently exports map extent as a polygon
+- Converts Web Mercator coordinates to WGS84
+- Use when: Need a simple geographic reference or area marker
 
 ## Key Architectural Decisions
 
@@ -104,15 +121,11 @@ The test script (`scripts/test-layers.js`) is intentionally lenient:
 - Results: 254 working, 51 restricted, 0 failed
 
 ### Deployment Configuration
-`next.config.js` has two modes:
+`next.config.js` uses environment-based configuration:
 ```javascript
-// Local development (current):
-// output: 'export',  // Commented out
-// basePath: '/infrastructure-tool-v2',  // Commented out
-
-// GitHub Pages deployment:
-output: 'export',  // Uncomment these
-basePath: '/infrastructure-tool-v2',  // Uncomment these
+output: 'export',
+basePath: process.env.NODE_ENV === 'production' ? '/infrastructure-tool-v2' : '',
+assetPrefix: process.env.NODE_ENV === 'production' ? '/infrastructure-tool-v2/' : '',
 ```
 
 ## Critical Files and Their Roles
@@ -124,22 +137,8 @@ basePath: '/infrastructure-tool-v2',  // Uncomment these
 - `src/app/page.tsx` - Main orchestrator, all state management
 - `src/components/LayerList.tsx` - Renders categorized layers with status indicators
 - `src/components/MapView.tsx` - ArcGIS map integration, dynamic imports for performance
-
-## Layer Categories
-
-Defined in `lib/layerCategories.ts` and `scripts/process-data.js`:
-- Emergency Services
-- Healthcare  
-- Education
-- Energy
-- Transportation
-- Communications
-- Government
-- Critical Facilities
-- Maritime
-- Utilities
-- Boundaries
-- Other (fallback)
+- `src/components/ExportMapButton.tsx` - Web Map JSON export
+- `src/components/ExportGeoJSONButton.tsx` - GeoJSON export
 
 ## Testing Results (Current)
 
@@ -155,10 +154,23 @@ After running `npm run test-layers`:
 2. **CORS limitations** - Some layers fail client-side despite passing server tests
 3. **Large initial load** - All 305 layers loaded into memory on app start
 4. **No server-side filtering** - All search/filter operations are client-side
+5. **ArcGIS title restrictions** - Titles cannot contain colons
+6. **GeoJSON limitations** - Exports only map extent, not all layer features
 
-## User Requirements
+## ArcGIS Online Import Guidelines
 
-1. **Always provide complete file replacements** - Never partial edits
-2. **Always commit to GitHub** for deployment
-3. **Always provide localhost link** after starting dev server
-4. **Test accessibility** - Many layers previously worked, don't be too strict
+### For Web Map JSON:
+1. Select file type: "Web Map" (NOT GeoJSON)
+2. Manually enter title (no colons), summary, and tags
+3. Creates interactive map with live data connections
+
+### For GeoJSON:
+1. Select file type: "GeoJSON" (NOT Web Map)  
+2. Manually enter title (no colons), summary, and tags
+3. Creates feature layer with extent polygon
+
+## Default Settings
+
+- **"Working layers only" checkbox**: Checked by default (shows only verified working layers)
+- **Auto-generated titles**: Use dashes instead of colons for ArcGIS compatibility
+- **Map view**: Defaults to USA bounds if no extent available

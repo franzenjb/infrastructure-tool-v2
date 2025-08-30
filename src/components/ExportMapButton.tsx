@@ -86,99 +86,133 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
     }
 
     try {
-      // Get current map extent and spatial reference
-      const extent = viewRef.extent ? {
-        xmin: viewRef.extent.xmin,
-        ymin: viewRef.extent.ymin,
-        xmax: viewRef.extent.xmax,
-        ymax: viewRef.extent.ymax,
-        spatialReference: {
-          wkid: viewRef.extent.spatialReference?.wkid || 102100 // Web Mercator by default
-        }
-      } : null
-
-      // Get current basemap
-      const basemapId = viewRef.map?.basemap?.id || 'streets-navigation-vector'
+      // Get current map extent and center
+      let initialExtent = null
+      let center = null
       
-      // Map our basemap IDs to ArcGIS basemap names
-      const basemapMapping: Record<string, string> = {
-        'streets-navigation-vector': 'streets-navigation-vector',
-        'topo-vector': 'topo-vector',
-        'satellite': 'satellite',
-        'hybrid': 'hybrid',
-        'gray-vector': 'gray-vector',
-        'dark-gray-vector': 'dark-gray-vector',
-        'oceans': 'oceans',
-        'osm': 'osm'
+      if (viewRef.extent) {
+        const extent = viewRef.extent
+        
+        // Convert Web Mercator to geographic coordinates if needed
+        if (extent.spatialReference?.wkid === 102100 || extent.spatialReference?.wkid === 3857) {
+          // Simple conversion from Web Mercator to WGS84
+          const xmin = (extent.xmin / 20037508.34) * 180
+          const ymin = (Math.atan(Math.exp((extent.ymin / 20037508.34) * Math.PI)) * 360 / Math.PI) - 90
+          const xmax = (extent.xmax / 20037508.34) * 180
+          const ymax = (Math.atan(Math.exp((extent.ymax / 20037508.34) * Math.PI)) * 360 / Math.PI) - 90
+          
+          initialExtent = { xmin, ymin, xmax, ymax }
+          center = [(xmin + xmax) / 2, (ymin + ymax) / 2]
+        } else {
+          initialExtent = {
+            xmin: extent.xmin,
+            ymin: extent.ymin,
+            xmax: extent.xmax,
+            ymax: extent.ymax
+          }
+          center = viewRef.center ? [viewRef.center.longitude, viewRef.center.latitude] : 
+                   [(extent.xmin + extent.xmax) / 2, (extent.ymin + extent.ymax) / 2]
+        }
       }
 
-      // Create ArcGIS Web Map JSON format
-      const webMapJson = {
-        operationalLayers: layers.map((layer, index) => ({
-          id: `layer_${index}`,
-          title: layer.name,
-          url: layer.serviceUrl,
-          layerType: "ArcGISFeatureLayer",
-          visibility: true,
-          opacity: 1,
-          // Add popup info if available
-          popupInfo: {
-            title: layer.name,
-            description: `Source: ${layer.agency}`
-          }
-        })),
-        baseMap: {
-          baseMapLayers: [{
-            id: "defaultBasemap",
-            layerType: "ArcGISBasemapLayer",
-            url: `https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer`,
+      // Create ArcGIS Pro JSON format (different from Web Map JSON)
+      const projectJson = {
+        title: mapTitle,
+        type: "Web Map",
+        typeKeywords: [
+          "ArcGIS Online",
+          "Explorer Web Map",
+          "Map",
+          "Online Map",
+          "Web Map"
+        ],
+        description: mapDescription,
+        tags: mapTags,
+        snippet: mapDescription.substring(0, 250),
+        thumbnail: "thumbnail/ago_downloaded.png",
+        documentation: null,
+        extent: initialExtent ? [
+          [initialExtent.xmin, initialExtent.ymin],
+          [initialExtent.xmax, initialExtent.ymax]
+        ] : [[-180, -90], [180, 90]],
+        spatialReference: {
+          wkid: 4326,
+          latestWkid: 4326
+        },
+        accessInformation: null,
+        licenseInfo: null,
+        culture: "en-us",
+        properties: null,
+        url: null,
+        proxyFilter: null,
+        access: "public",
+        size: -1,
+        appCategories: [],
+        industries: [],
+        languages: [],
+        largeThumbnail: null,
+        banner: null,
+        screenshots: [],
+        listed: false,
+        ownerFolder: null,
+        protected: false,
+        commentsEnabled: true,
+        numComments: 0,
+        numRatings: 0,
+        avgRating: 0,
+        numViews: 1,
+        scoreCompleteness: 83,
+        groupDesignations: null,
+        text: JSON.stringify({
+          operationalLayers: layers.map((layer, index) => ({
+            id: `layer_${index}`,
+            layerType: "ArcGISFeatureLayer",
+            url: layer.serviceUrl,
             visibility: true,
             opacity: 1,
-            title: "Basemap"
-          }],
-          title: basemapMapping[basemapId] || "Basemap"
-        },
-        spatialReference: extent?.spatialReference || { wkid: 102100 },
-        initialState: {
-          viewpoint: {
-            targetGeometry: extent || {
-              xmin: -14478840,
-              ymin: 2761109,
-              xmax: -7246958,
-              ymax: 6525624,
-              spatialReference: { wkid: 102100 }
+            title: layer.name,
+            itemId: null,
+            popupInfo: {
+              title: layer.name,
+              description: `Source: ${layer.agency}`
             }
-          }
-        },
-        authoringApp: "HIFLD Search Application",
-        authoringAppVersion: "1.0",
-        version: "2.26"
+          })),
+          baseMap: {
+            baseMapLayers: [{
+              id: "defaultBasemap",
+              layerType: "ArcGISTiledMapServiceLayer",
+              url: "https://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",
+              visibility: true,
+              opacity: 1,
+              title: "World Street Map"
+            }],
+            title: "Basemap"
+          },
+          spatialReference: {
+            wkid: 102100,
+            latestWkid: 3857
+          },
+          authoringApp: "HIFLD Infrastructure Tool v2",
+          authoringAppVersion: "2.0",
+          version: "2.26"
+        })
       }
 
-      // Add metadata to the Web Map JSON
-      const webMapWithMetadata = {
-        ...webMapJson,
-        // Add metadata that ArcGIS Online will recognize
-        title: mapTitle,
-        snippet: mapDescription.substring(0, 250), // ArcGIS limits snippet to 250 chars
-        tags: mapTags
-      }
-
-      // Create blob and download - export pure Web Map JSON
-      const blob = new Blob([JSON.stringify(webMapWithMetadata, null, 2)], { type: 'application/json' })
+      // Create blob and download
+      const blob = new Blob([JSON.stringify(projectJson, null, 2)], { type: 'application/json' })
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       
       // Generate filename with date
       const date = new Date().toISOString().split('T')[0]
-      a.download = `HIFLD_WebMap_${date}.json`
+      a.download = `HIFLD_ArcGISProject_${date}.json`
       
       a.href = url
       a.click()
       URL.revokeObjectURL(url)
 
-      // Show success message with instructions
-      alert(`Web Map JSON exported successfully!\n\nTo import to ArcGIS Online:\n1. Go to your ArcGIS Online Content page\n2. Click "New item" → "Your device"\n3. Choose the downloaded ${a.download} file\n4. IMPORTANT: Select Type: "Web Map" (NOT GeoJSON)\n5. Manually enter the title (no colons allowed), summary, and tags\n6. Click "Save"\n\nThis is a Web Map JSON file, not a GeoJSON file.`)
+      // Show success message with clearer instructions
+      alert(`ArcGIS Project JSON exported successfully!\n\nIMPORTANT: This file format may require:\n1. Importing through ArcGIS Pro (not ArcGIS Online)\n2. Using ArcGIS Assistant (ago-assistant.esri.com)\n3. Or creating a new Web Map manually and adding the layers\n\nFor best results, consider using the "Export GeoJSON" button instead.`)
       
       // Close dialog
       setShowDialog(false)
@@ -208,29 +242,27 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
       {showDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <h3 className="text-xl font-semibold mb-4">Export Web Map for ArcGIS Online</h3>
+            <h3 className="text-xl font-semibold mb-4">Export Web Map for ArcGIS</h3>
             
             <div className="mb-4 space-y-4">
               <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                <h4 className="text-sm font-semibold text-amber-800 mb-2">What is a Web Map JSON?</h4>
-                <p className="text-sm text-amber-700">
-                  This creates a configuration file that tells ArcGIS which online services to connect to. 
-                  It does NOT contain the actual data - instead it contains URLs pointing to where the data lives online.
-                  Think of it like a TV channel guide rather than recorded shows.
+                <h4 className="text-sm font-semibold text-amber-800 mb-2">⚠️ Important Note about Web Map Export</h4>
+                <p className="text-sm text-amber-700 mb-2">
+                  ArcGIS Online's "New item" interface may not properly recognize Web Map JSON files. 
+                </p>
+                <p className="text-sm text-amber-700 font-semibold">
+                  For best results, use the "Export GeoJSON" button instead, which creates a simple geographic file that ArcGIS Online can easily import.
                 </p>
               </div>
               
               <div className="p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-blue-800 font-medium mb-2">
-                  How to import to ArcGIS Online:
+                  Alternative methods to use Web Map JSON:
                 </p>
                 <ol className="list-decimal list-inside text-sm text-blue-700 space-y-1">
-                  <li>Download the Web Map JSON file</li>
-                  <li>Go to ArcGIS Online and click &quot;Content&quot;</li>
-                  <li>Click &quot;New item&quot; → &quot;Your device&quot;</li>
-                  <li className="font-semibold">IMPORTANT: Select Type: &quot;Web Map&quot; (NOT GeoJSON)</li>
-                  <li>You must manually enter the title, summary, and tags in ArcGIS</li>
-                  <li>ArcGIS will then connect to the online services to display the data</li>
+                  <li>Use ArcGIS Assistant (ago-assistant.esri.com) to upload</li>
+                  <li>Import through ArcGIS Pro desktop application</li>
+                  <li>Create a new Web Map manually and add layers by URL</li>
                 </ol>
               </div>
             </div>
@@ -304,12 +336,12 @@ export default function ExportMapButton({ layers, viewRef, className = '' }: Exp
               </div>
 
               <div className="bg-gray-50 p-3 rounded-lg">
-                <p className="text-sm font-medium text-gray-700 mb-2">Web Map will include:</p>
+                <p className="text-sm font-medium text-gray-700 mb-2">This export includes:</p>
                 <ul className="space-y-1 text-sm text-gray-600">
                   <li>✓ All {layers.length} selected layers as operational layers</li>
                   <li>✓ Current map extent and spatial reference</li>
                   <li>✓ Layer visibility and popup configuration</li>
-                  <li>✓ Metadata for ArcGIS Online item</li>
+                  <li>✓ Metadata in ArcGIS format</li>
                 </ul>
               </div>
             </div>
