@@ -389,82 +389,6 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
   }, [])
 
   // Update layers when prop changes
-  // Create choropleth renderer - COMPLETELY FIXED
-  const createChoroplethRenderer = (fieldName: string, layerTitle: string) => {
-    // Import the renderer classes inline
-    const layerName = layerTitle.toLowerCase()
-    
-    // Map exact field names for county demographics
-    if (layerName.includes('population') && layerName.includes('total')) {
-      fieldName = 'P0010001'
-    } else if (layerName.includes('housing units')) {
-      fieldName = 'H0010001'
-    } else if (layerName.includes('households')) {
-      fieldName = 'H0010002'
-    } else if (layerName.includes('black')) {
-      fieldName = 'P0010004'
-    } else if (layerName.includes('hispanic')) {
-      fieldName = 'P0020002'
-    } else if (layerName.includes('asian')) {
-      fieldName = 'P0010006'
-    }
-    
-    // Create a simple class breaks renderer
-    const renderer = {
-      type: "class-breaks",
-      field: fieldName,
-      classBreakInfos: [
-        {
-          minValue: 0,
-          maxValue: 10000,
-          symbol: {
-            type: "simple-fill",
-            color: [255, 255, 204, 0.7],
-            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
-          }
-        },
-        {
-          minValue: 10000,
-          maxValue: 50000,
-          symbol: {
-            type: "simple-fill",
-            color: [254, 217, 118, 0.7],
-            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
-          }
-        },
-        {
-          minValue: 50000,
-          maxValue: 100000,
-          symbol: {
-            type: "simple-fill",
-            color: [254, 178, 76, 0.7],
-            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
-          }
-        },
-        {
-          minValue: 100000,
-          maxValue: 500000,
-          symbol: {
-            type: "simple-fill",
-            color: [253, 141, 60, 0.7],
-            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
-          }
-        },
-        {
-          minValue: 500000,
-          maxValue: 10000000,
-          symbol: {
-            type: "simple-fill",
-            color: [240, 59, 32, 0.7],
-            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
-          }
-        }
-      ]
-    }
-    
-    console.log(`Creating choropleth for ${layerTitle} using field ${fieldName}`)
-    return renderer
-  }
 
   useEffect(() => {
     const updateLayers = async () => {
@@ -510,25 +434,13 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
               layer.name.toLowerCase().includes('density')
             )
 
-            const featureLayerConfig: any = {
+            const featureLayer = new FeatureLayer.default({
               url: layer.serviceUrl,
               title: layer.name,
               outFields: ["*"],
               popupEnabled: true,
-              popupTemplate: createPopupTemplate(layer),
-              // Ensure the renderer is loaded
-              refreshInterval: 0.1 // This forces immediate rendering
-            }
-            
-            // Apply choropleth renderer BEFORE creating the layer for demographic layers
-            if (isDemographicLayer) {
-              const renderer = createChoroplethRenderer('P0010001', layer.name)
-              if (renderer) {
-                featureLayerConfig.renderer = renderer
-              }
-            }
-
-            const featureLayer = new FeatureLayer.default(featureLayerConfig)
+              popupTemplate: createPopupTemplate(layer)
+            })
 
             // Add layer to map immediately
             mapInstance.current.add(featureLayer)
