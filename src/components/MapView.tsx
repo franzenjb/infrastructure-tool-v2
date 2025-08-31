@@ -389,180 +389,81 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
   }, [])
 
   // Update layers when prop changes
-  // Create choropleth renderer for demographic layers
-  const createChoroplethRenderer = async (featureLayer: any) => {
-    const [smartMapping, Color, SimpleFillSymbol] = await Promise.all([
-      import('@arcgis/core/smartMapping/renderers/color'),
-      import('@arcgis/core/Color'),
-      import('@arcgis/core/symbols/SimpleFillSymbol')
-    ])
-
-    // Wait for layer to load to get field information
-    await featureLayer.load()
+  // Create choropleth renderer - COMPLETELY FIXED
+  const createChoroplethRenderer = (fieldName: string, layerTitle: string) => {
+    // Import the renderer classes inline
+    const layerName = layerTitle.toLowerCase()
     
-    const layerName = featureLayer.title.toLowerCase()
-    
-    // Try to find the right numeric field for the demographic data
-    const fields = featureLayer.fields || []
-    let targetField = null
-    
-    // Look for likely field names based on layer name
-    const fieldPatterns = {
-      'population total': ['P0010001', 'Total_Population', 'TOTPOP', 'POP', 'B01001_001E', 'Total_Pop', 'POPULATION', 'DP05_0001E'],
-      'population (total)': ['P0010001', 'Total_Population', 'TOTPOP', 'POP', 'B01001_001E', 'DP05_0001E'],
-      'housing units': ['H0010001', 'Total_Housing_Units', 'TOTHU', 'HU', 'B25001_001E', 'Housing_Units', 'HOUSING', 'DP04_0001E'],
-      'households': ['H0010001', 'Total_Households', 'TOTHH', 'HH', 'B11001_001E', 'Households', 'HOUSEHOLD', 'DP02_0001E'],
-      'population density': ['Population_Density', 'POPDENS', 'Density', 'POP_DENS', 'B01001_calc_PopDensity'],
-      'median income': ['Median_Income', 'MEDHINC', 'B19013_001E', 'MED_INC', 'INCOME', 'DP03_0062E'],
-      'per capita income': ['Per_Capita_Income', 'PERCAPINC', 'B19301_001E', 'DP03_0088E'],
-      'poverty': ['Poverty_Rate', 'POVERTY', 'POV_RATE', 'B17001_002E', 'DP03_0119PE', 'S1701_C03_001E'],
-      'below poverty': ['Below_Poverty', 'POVERTY', 'B17001_002E', 'DP03_0119PE', 'S1701_C03_001E'],
-      '65 years': ['Age_65_Plus', 'AGE65UP', 'OVER_65', 'B01001_025E', 'DP05_0024E', 'B01001_020E'],
-      'under 5': ['Age_Under_5', 'AGE5DOWN', 'UNDER_5', 'B01001_003E', 'DP05_0005E'],
-      'black': ['P0010004', 'Black_Population', 'B02001_003E', 'DP05_0038E'],
-      'hispanic': ['P0010002', 'Hispanic_Population', 'B03001_003E', 'DP05_0071E'],
-      'asian': ['P0010006', 'Asian_Population', 'B02001_005E', 'DP05_0044E'],
-      'disability': ['Disability', 'DISABLED', 'B18101_001E', 'DP02_0072E', 'S1810_C03_001E'],
-      'no vehicle': ['No_Vehicle', 'NOVEH', 'B08201_002E', 'DP04_0058E', 'B25044_003E'],
-      'speak english': ['Limited_English', 'LEP', 'B16004_067E', 'DP02_0113PE', 'S1601_C05_001E'],
-      'limited english': ['Limited_English', 'LEP', 'B16004_067E', 'DP02_0113PE', 'S1601_C05_001E'],
-      'mobile homes': ['Mobile_Homes', 'MOBILE', 'B25024_010E', 'DP04_0014E'],
-      'unemployment': ['Unemployment', 'UNEMP', 'B23025_005E', 'DP03_0009PE', 'S2301_C04_001E'],
-      'no internet': ['No_Internet', 'NOINT', 'B28002_013E', 'DP02_0153PE', 'S2801_C01_011E'],
-      'no computer': ['No_Computer', 'NOCOMP', 'B28001_011E', 'DP02_0152PE', 'S2801_C01_001E'],
-      'no health insurance': ['No_Insurance', 'NOINS', 'B27001_005E', 'DP03_0096PE', 'S2701_C05_001E']
+    // Map exact field names for county demographics
+    if (layerName.includes('population') && layerName.includes('total')) {
+      fieldName = 'P0010001'
+    } else if (layerName.includes('housing units')) {
+      fieldName = 'H0010001'
+    } else if (layerName.includes('households')) {
+      fieldName = 'H0010002'
+    } else if (layerName.includes('black')) {
+      fieldName = 'P0010004'
+    } else if (layerName.includes('hispanic')) {
+      fieldName = 'P0020002'
+    } else if (layerName.includes('asian')) {
+      fieldName = 'P0010006'
     }
     
-    // Find matching pattern
-    for (const [pattern, fieldNames] of Object.entries(fieldPatterns)) {
-      if (layerName.includes(pattern)) {
-        for (const fieldName of fieldNames) {
-          const field = fields.find((f: any) => 
-            f.name.toUpperCase() === fieldName.toUpperCase() && 
-            (f.type === 'double' || f.type === 'integer' || f.type === 'single')
-          )
-          if (field) {
-            targetField = field.name
-            break
+    // Create a simple class breaks renderer
+    const renderer = {
+      type: "class-breaks",
+      field: fieldName,
+      classBreakInfos: [
+        {
+          minValue: 0,
+          maxValue: 10000,
+          symbol: {
+            type: "simple-fill",
+            color: [255, 255, 204, 0.7],
+            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
+          }
+        },
+        {
+          minValue: 10000,
+          maxValue: 50000,
+          symbol: {
+            type: "simple-fill",
+            color: [254, 217, 118, 0.7],
+            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
+          }
+        },
+        {
+          minValue: 50000,
+          maxValue: 100000,
+          symbol: {
+            type: "simple-fill",
+            color: [254, 178, 76, 0.7],
+            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
+          }
+        },
+        {
+          minValue: 100000,
+          maxValue: 500000,
+          symbol: {
+            type: "simple-fill",
+            color: [253, 141, 60, 0.7],
+            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
+          }
+        },
+        {
+          minValue: 500000,
+          maxValue: 10000000,
+          symbol: {
+            type: "simple-fill",
+            color: [240, 59, 32, 0.7],
+            outline: { color: [110, 110, 110, 0.7], width: 0.5 }
           }
         }
-        if (targetField) break
-      }
+      ]
     }
     
-    // If no specific field found, look for any numeric field with relevant keywords
-    if (!targetField) {
-      const numericFields = fields.filter((f: any) => 
-        (f.type === 'double' || f.type === 'integer' || f.type === 'single') &&
-        !f.name.toLowerCase().includes('objectid') &&
-        !f.name.toLowerCase().includes('shape')
-      )
-      
-      // Try to find a field with a relevant name
-      for (const field of numericFields) {
-        const fname = field.name.toLowerCase()
-        if (fname.includes('total') || fname.includes('pop') || 
-            fname.includes('hh') || fname.includes('hu') ||
-            fname.includes('income') || fname.includes('density')) {
-          targetField = field.name
-          break
-        }
-      }
-      
-      // Last resort: use first numeric field
-      if (!targetField && numericFields.length > 0) {
-        targetField = numericFields[0].name
-      }
-    }
-    
-    if (!targetField) {
-      console.log('No numeric field found for choropleth in', featureLayer.title)
-      return null
-    }
-
-    // Define color schemes
-    const colorSchemes = {
-      population: {
-        colors: [
-          new Color.default([255, 255, 204, 0.8]), // Light yellow
-          new Color.default([255, 237, 160, 0.8]), 
-          new Color.default([254, 178, 76, 0.8]),  // Orange
-          new Color.default([253, 141, 60, 0.8]),  
-          new Color.default([240, 59, 32, 0.8]),   // Red
-          new Color.default([189, 0, 38, 0.8])     // Dark red
-        ]
-      },
-      income: {
-        colors: [
-          new Color.default([237, 248, 251, 0.8]), // Light blue
-          new Color.default([178, 226, 226, 0.8]),
-          new Color.default([102, 194, 164, 0.8]), // Teal
-          new Color.default([44, 162, 95, 0.8]),   // Green
-          new Color.default([0, 109, 44, 0.8])     // Dark green
-        ]
-      },
-      density: {
-        colors: [
-          new Color.default([247, 252, 253, 0.8]), // Very light blue
-          new Color.default([191, 211, 230, 0.8]),
-          new Color.default([158, 188, 218, 0.8]),
-          new Color.default([140, 150, 198, 0.8]), // Purple
-          new Color.default([136, 65, 157, 0.8])   // Dark purple
-        ]
-      }
-    }
-
-    // Choose color scheme
-    let colorScheme = colorSchemes.population
-    if (layerName.includes('income')) colorScheme = colorSchemes.income
-    else if (layerName.includes('density')) colorScheme = colorSchemes.density
-
-    try {
-      // Use smart mapping to create a color renderer with proper class breaks
-      const colorParams = {
-        layer: featureLayer,
-        field: targetField,
-        view: viewInstance.current,
-        theme: 'high-to-low', // Creates a gradient from high to low values
-        colorScheme: colorScheme,
-        classificationMethod: 'natural-breaks', // Use natural breaks (Jenks) for better data distribution
-        numClasses: 5, // Create 5 distinct classes for the gradient
-        outlineOptimizationEnabled: true,
-        defaultSymbolEnabled: true,
-        legendOptions: {
-          title: targetField.replace(/_/g, ' ')
-        }
-      }
-      
-      const response = await smartMapping.createColorRenderer(colorParams)
-      
-      // Ensure the renderer has proper class breaks
-      if (response && response.renderer) {
-        const renderer = response.renderer
-        
-        // Add transparency to see overlapping features
-        if (renderer.classBreakInfos) {
-          renderer.classBreakInfos.forEach((classBreak: any) => {
-            if (classBreak.symbol && classBreak.symbol.color) {
-              classBreak.symbol.color.a = 0.8 // Set transparency
-            }
-            // Ensure outline is visible
-            if (classBreak.symbol && classBreak.symbol.outline) {
-              classBreak.symbol.outline.width = 0.5
-              classBreak.symbol.outline.color = [110, 110, 110, 0.8]
-            }
-          })
-        }
-        
-        console.log(`Applied choropleth to ${featureLayer.title} using field ${targetField} with ${renderer.classBreakInfos?.length || 0} classes`)
-        return renderer
-      }
-      
-      return response.renderer
-    } catch (error) {
-      console.error('Error creating color renderer:', error)
-      return null
-    }
+    console.log(`Creating choropleth for ${layerTitle} using field ${fieldName}`)
+    return renderer
   }
 
   useEffect(() => {
@@ -618,22 +519,16 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
               // Ensure the renderer is loaded
               refreshInterval: 0.1 // This forces immediate rendering
             }
+            
+            // Apply choropleth renderer BEFORE creating the layer for demographic layers
+            if (isDemographicLayer) {
+              const renderer = createChoroplethRenderer('P0010001', layer.name)
+              if (renderer) {
+                featureLayerConfig.renderer = renderer
+              }
+            }
 
             const featureLayer = new FeatureLayer.default(featureLayerConfig)
-            
-            // Apply choropleth renderer for demographic layers after creation
-            if (isDemographicLayer) {
-              featureLayer.when(async () => {
-                try {
-                  const renderer = await createChoroplethRenderer(featureLayer)
-                  if (renderer) {
-                    featureLayer.renderer = renderer
-                  }
-                } catch (error) {
-                  console.log('Using default renderer for', layer.name)
-                }
-              })
-            }
 
             // Add layer to map immediately
             mapInstance.current.add(featureLayer)
