@@ -9,6 +9,39 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a standard 100% requirement for ALL projects. Never omit the localhost link.
 
+## 🚀 DEPLOYMENT PROCESS - STANDARD FOR ALL PROJECTS
+
+### GitHub Pages Deployment
+When deploying to GitHub Pages, ALWAYS provide these links to the user:
+
+1. **Live Site URL**: https://franzenjb.github.io/infrastructure-tool-v2/
+2. **Deployment Status**: https://github.com/franzenjb/infrastructure-tool-v2/actions
+3. **Expected Time**: 2-5 minutes for deployment to complete
+
+### Deployment Steps
+```bash
+# 1. Build the project
+npm run build
+
+# 2. Commit all changes
+git add -A
+git commit -m "Descriptive commit message"
+
+# 3. Push to GitHub (triggers automatic deployment)
+git push origin main
+
+# 4. ALWAYS inform the user:
+#    - Deployment is in progress
+#    - Provide the actions link to check status
+#    - Mention the 2-5 minute wait time
+```
+
+### Checking Deployment Status
+```bash
+# Check latest deployment status via GitHub CLI
+gh api repos/franzenjb/infrastructure-tool-v2/actions/runs --jq '.workflow_runs[0] | {status: .status, conclusion: .conclusion, created_at: .created_at, html_url: .html_url}'
+```
+
 ## Commands
 
 ```bash
