@@ -242,8 +242,8 @@ export default function Home() {
             />
           )}
 
-          {/* Selected Layers Summary - Only for HIFLD tab */}
-          {activeTab === 'hifld' && selectedLayers.length > 0 && (
+          {/* Selected Layers Summary - For both HIFLD and FEMA tabs */}
+          {selectedLayers.length > 0 && (
             <div className="p-4 border-t border-gray-200 bg-gray-50">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-semibold text-gray-700">
