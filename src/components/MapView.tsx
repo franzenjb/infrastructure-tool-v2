@@ -57,22 +57,23 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
         let content = '<div style="padding: 10px; max-width: 400px;">'
 
         // Fire Perimeters - Show fire-specific information
-        if (layerNameLower.includes('fire') && layerNameLower.includes('perimeter')) {
-          const fireName = getFieldValue(['FIRE_NAME', 'INCIDENT_NAME', 'INCIDENTNAME', 'NAME'])
-          const acres = getFieldValue(['ACRES', 'GISACRES', 'AREA_', 'TOTALACRES'])
-          const fireYear = getFieldValue(['FIRE_YEAR', 'YEAR', 'FIREYEAR'])
-          const startDate = getFieldValue(['STARTDATE', 'START_DATE', 'IGNITION_DATE', 'DISCOVERED'])
-          const containment = getFieldValue(['PERCENTCONTAINED', 'PERCENT_CONTAINED', 'CONTAINMENT'])
-          const cause = getFieldValue(['CAUSE', 'FIRECAUSE', 'FIRE_CAUSE'])
-          const state = getFieldValue(['STATE', 'STATE_NAME'])
-          const agency = getFieldValue(['AGENCY', 'UNIT', 'PROTECTING_AGENCY'])
+        if (layerNameLower.includes('fire') && (layerNameLower.includes('perimeter') || layerNameLower.includes('wildfire'))) {
+          const fireName = getFieldValue(['FIRE_NAME', 'INCIDENT_NAME', 'INCIDENTNAME', 'NAME', 'IncidentName'])
+          const acres = getFieldValue(['ACRES', 'GISACRES', 'AREA_', 'TOTALACRES', 'GISAcres', 'DailyAcres'])
+          const fireYear = getFieldValue(['FIRE_YEAR', 'YEAR', 'FIREYEAR', 'FireYear'])
+          const startDate = getFieldValue(['STARTDATE', 'START_DATE', 'IGNITION_DATE', 'DISCOVERED', 'FireDiscoveryDateTime', 'CreateDate'])
+          const containment = getFieldValue(['PERCENTCONTAINED', 'PERCENT_CONTAINED', 'CONTAINMENT', 'PercentContained'])
+          const cause = getFieldValue(['CAUSE', 'FIRECAUSE', 'FIRE_CAUSE', 'FireCause'])
+          const state = getFieldValue(['STATE', 'STATE_NAME', 'POOState'])
+          const agency = getFieldValue(['AGENCY', 'UNIT', 'PROTECTING_AGENCY', 'POOProtectingAgency'])
 
           if (fireName) {
             content += `<h3 style="margin: 0 0 10px 0; color: #d73502;">${fireName}</h3>`
           } else {
-            content += `<h3 style="margin: 0 0 10px 0; color: #d73502;">Fire Perimeter</h3>`
+            content += `<h3 style="margin: 0 0 10px 0; color: #d73502;">Fire Information</h3>`
           }
 
+          // Show known fields
           content += '<table style="width: 100%; font-size: 14px;">'
           if (acres) content += `<tr><td style="padding: 4px; font-weight: bold;">Acres:</td><td>${parseFloat(acres).toLocaleString()} acres</td></tr>`
           if (fireYear) content += `<tr><td style="padding: 4px; font-weight: bold;">Year:</td><td>${fireYear}</td></tr>`
@@ -81,6 +82,17 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
           if (cause) content += `<tr><td style="padding: 4px; font-weight: bold;">Cause:</td><td>${cause}</td></tr>`
           if (state) content += `<tr><td style="padding: 4px; font-weight: bold;">State:</td><td>${state}</td></tr>`
           if (agency) content += `<tr><td style="padding: 4px; font-weight: bold;">Agency:</td><td>${agency}</td></tr>`
+          
+          // If we didn't find many fields, show all available attributes
+          if (!fireName && !acres && !fireYear) {
+            content += '<tr><td colspan="2" style="padding: 4px; font-style: italic;">Additional attributes:</td></tr>'
+            for (const [key, value] of Object.entries(attributes)) {
+              if (value && !key.toLowerCase().includes('objectid') && !key.toLowerCase().includes('shape')) {
+                const displayKey = key.replace(/_/g, ' ')
+                content += `<tr><td style="padding: 4px; font-weight: bold;">${displayKey}:</td><td>${value}</td></tr>`
+              }
+            }
+          }
           content += '</table>'
         }
         
@@ -396,18 +408,29 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
     
     // Look for likely field names based on layer name
     const fieldPatterns = {
-      'population total': ['P0010001', 'Total_Population', 'TOTPOP', 'POP', 'B01001_001E', 'Total_Pop', 'POPULATION'],
-      'population (total)': ['P0010001', 'Total_Population', 'TOTPOP', 'POP', 'B01001_001E'],
-      'housing units': ['H0010001', 'Total_Housing_Units', 'TOTHU', 'HU', 'B25001_001E', 'Housing_Units', 'HOUSING'],
-      'households': ['H0010001', 'Total_Households', 'TOTHH', 'HH', 'B11001_001E', 'Households', 'HOUSEHOLD'],
-      'population density': ['Population_Density', 'POPDENS', 'Density', 'POP_DENS'],
-      'median income': ['Median_Income', 'MEDHINC', 'B19013_001E', 'MED_INC', 'INCOME'],
-      'poverty': ['Poverty_Rate', 'POVERTY', 'POV_RATE', 'B17001_001E'],
-      '65 years': ['P0010001', 'Age_65_Plus', 'AGE65UP', 'OVER_65', 'B01001_025E'],
-      'under 5': ['P0010001', 'Age_Under_5', 'AGE5DOWN', 'UNDER_5', 'B01001_003E'],
-      'black': ['P0010004', 'Black_Population'],
-      'hispanic': ['P0010002', 'Hispanic_Population'],
-      'asian': ['P0010006', 'Asian_Population']
+      'population total': ['P0010001', 'Total_Population', 'TOTPOP', 'POP', 'B01001_001E', 'Total_Pop', 'POPULATION', 'DP05_0001E'],
+      'population (total)': ['P0010001', 'Total_Population', 'TOTPOP', 'POP', 'B01001_001E', 'DP05_0001E'],
+      'housing units': ['H0010001', 'Total_Housing_Units', 'TOTHU', 'HU', 'B25001_001E', 'Housing_Units', 'HOUSING', 'DP04_0001E'],
+      'households': ['H0010001', 'Total_Households', 'TOTHH', 'HH', 'B11001_001E', 'Households', 'HOUSEHOLD', 'DP02_0001E'],
+      'population density': ['Population_Density', 'POPDENS', 'Density', 'POP_DENS', 'B01001_calc_PopDensity'],
+      'median income': ['Median_Income', 'MEDHINC', 'B19013_001E', 'MED_INC', 'INCOME', 'DP03_0062E'],
+      'per capita income': ['Per_Capita_Income', 'PERCAPINC', 'B19301_001E', 'DP03_0088E'],
+      'poverty': ['Poverty_Rate', 'POVERTY', 'POV_RATE', 'B17001_002E', 'DP03_0119PE', 'S1701_C03_001E'],
+      'below poverty': ['Below_Poverty', 'POVERTY', 'B17001_002E', 'DP03_0119PE', 'S1701_C03_001E'],
+      '65 years': ['Age_65_Plus', 'AGE65UP', 'OVER_65', 'B01001_025E', 'DP05_0024E', 'B01001_020E'],
+      'under 5': ['Age_Under_5', 'AGE5DOWN', 'UNDER_5', 'B01001_003E', 'DP05_0005E'],
+      'black': ['P0010004', 'Black_Population', 'B02001_003E', 'DP05_0038E'],
+      'hispanic': ['P0010002', 'Hispanic_Population', 'B03001_003E', 'DP05_0071E'],
+      'asian': ['P0010006', 'Asian_Population', 'B02001_005E', 'DP05_0044E'],
+      'disability': ['Disability', 'DISABLED', 'B18101_001E', 'DP02_0072E', 'S1810_C03_001E'],
+      'no vehicle': ['No_Vehicle', 'NOVEH', 'B08201_002E', 'DP04_0058E', 'B25044_003E'],
+      'speak english': ['Limited_English', 'LEP', 'B16004_067E', 'DP02_0113PE', 'S1601_C05_001E'],
+      'limited english': ['Limited_English', 'LEP', 'B16004_067E', 'DP02_0113PE', 'S1601_C05_001E'],
+      'mobile homes': ['Mobile_Homes', 'MOBILE', 'B25024_010E', 'DP04_0014E'],
+      'unemployment': ['Unemployment', 'UNEMP', 'B23025_005E', 'DP03_0009PE', 'S2301_C04_001E'],
+      'no internet': ['No_Internet', 'NOINT', 'B28002_013E', 'DP02_0153PE', 'S2801_C01_011E'],
+      'no computer': ['No_Computer', 'NOCOMP', 'B28001_011E', 'DP02_0152PE', 'S2801_C01_001E'],
+      'no health insurance': ['No_Insurance', 'NOINS', 'B27001_005E', 'DP03_0096PE', 'S2701_C05_001E']
     }
     
     // Find matching pattern
@@ -495,18 +518,46 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
     else if (layerName.includes('density')) colorScheme = colorSchemes.density
 
     try {
-      // Use smart mapping to create a color renderer
+      // Use smart mapping to create a color renderer with proper class breaks
       const colorParams = {
         layer: featureLayer,
         field: targetField,
         view: viewInstance.current,
+        theme: 'high-to-low', // Creates a gradient from high to low values
         colorScheme: colorScheme,
+        classificationMethod: 'natural-breaks', // Use natural breaks (Jenks) for better data distribution
+        numClasses: 5, // Create 5 distinct classes for the gradient
         outlineOptimizationEnabled: true,
-        defaultSymbolEnabled: false
+        defaultSymbolEnabled: true,
+        legendOptions: {
+          title: targetField.replace(/_/g, ' ')
+        }
       }
       
       const response = await smartMapping.createColorRenderer(colorParams)
-      console.log(`Applied choropleth to ${featureLayer.title} using field ${targetField}`)
+      
+      // Ensure the renderer has proper class breaks
+      if (response && response.renderer) {
+        const renderer = response.renderer
+        
+        // Add transparency to see overlapping features
+        if (renderer.classBreakInfos) {
+          renderer.classBreakInfos.forEach((classBreak: any) => {
+            if (classBreak.symbol && classBreak.symbol.color) {
+              classBreak.symbol.color.a = 0.8 // Set transparency
+            }
+            // Ensure outline is visible
+            if (classBreak.symbol && classBreak.symbol.outline) {
+              classBreak.symbol.outline.width = 0.5
+              classBreak.symbol.outline.color = [110, 110, 110, 0.8]
+            }
+          })
+        }
+        
+        console.log(`Applied choropleth to ${featureLayer.title} using field ${targetField} with ${renderer.classBreakInfos?.length || 0} classes`)
+        return renderer
+      }
+      
       return response.renderer
     } catch (error) {
       console.error('Error creating color renderer:', error)
