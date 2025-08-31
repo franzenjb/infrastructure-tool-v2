@@ -8,7 +8,7 @@ import StatusIndicator from '@/components/StatusIndicator'
 import FEMATab from '@/components/FEMATab'
 
 export interface EnhancedLayer {
-  id: number
+  id: number | string  // Allow both number (HIFLD) and string (FEMA) IDs
   name: string
   category: string
   serviceUrl: string | null
@@ -99,7 +99,7 @@ export default function Home() {
     }
   }
 
-  const handleRemoveLayer = (layerId: number) => {
+  const handleRemoveLayer = (layerId: number | string) => {
     setSelectedLayers(selectedLayers.filter(l => l.id !== layerId))
   }
 
@@ -270,18 +270,17 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="bg-blue-50 border-2 border-blue-300 p-4 rounded-lg">
-                <h3 className="text-sm font-bold text-blue-900 mb-2 flex items-center gap-2">
-                  <span className="text-lg">📋</span>
+              <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                <h3 className="text-sm font-semibold text-gray-700 mb-3">
                   How to Add Layers to ArcGIS:
                 </h3>
-                <ol className="text-sm text-blue-800 list-decimal list-inside space-y-2">
-                  <li><strong>Preview here:</strong> Click "Add" to see on map</li>
-                  <li><strong>Copy URL:</strong> Click "📋 Copy URL" button</li>
-                  <li><strong>In ArcGIS:</strong> Add → Add layer from URL</li>
-                  <li><strong>Paste & Add:</strong> Paste URL and click "Add to map"</li>
+                <ol className="text-sm text-gray-600 space-y-2">
+                  <li><span className="text-blue-600 font-medium">1. Preview here:</span> Click "Add" to see on map</li>
+                  <li><span className="text-blue-600 font-medium">2. Copy URL:</span> Click "Copy URL" button</li>
+                  <li><span className="text-blue-600 font-medium">3. In ArcGIS:</span> Add → Add layer from URL</li>
+                  <li><span className="text-blue-600 font-medium">4. Paste & Add:</span> Paste URL and click "Add to map"</li>
                 </ol>
-                <p className="text-xs text-blue-600 mt-3 italic">
+                <p className="text-xs text-gray-500 mt-3 italic">
                   Each layer URL can be added to any ArcGIS map!
                 </p>
               </div>
