@@ -105,63 +105,63 @@ export default function LayerList({
                     !isWorkable && "opacity-60"
                   )}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className={getStatusColor(layer.testStatus)}>
-                          {getStatusIcon(layer.testStatus)}
-                        </span>
-                        <h4 className="font-medium text-gray-900 truncate">
-                          {layer.name}
-                        </h4>
+                  {/* Layer name and status at top */}
+                  <div className="flex items-start gap-2 mb-2">
+                    <span className={getStatusColor(layer.testStatus)}>
+                      {getStatusIcon(layer.testStatus)}
+                    </span>
+                    <h4 className="font-medium text-gray-900 flex-1">
+                      {layer.name}
+                    </h4>
+                  </div>
+                  
+                  {/* Metadata in middle */}
+                  <div className="text-xs text-gray-500 mb-2 space-y-1">
+                    {layer.agency && (
+                      <div>Agency: {layer.agency}</div>
+                    )}
+                    {layer.testError && (
+                      <div className="text-red-600">
+                        {layer.testError}
                       </div>
-                      <div className="text-xs text-gray-500 space-y-1">
-                        {layer.agency && (
-                          <div>Agency: {layer.agency}</div>
-                        )}
-                        {layer.testError && (
-                          <div className="text-red-600">
-                            {layer.testError}
-                          </div>
-                        )}
-                        {(layer.requiresDUA || layer.requiresGII) && (
-                          <div className="text-yellow-600">
-                            {layer.requiresDUA && 'DUA Required'}
-                            {layer.requiresDUA && layer.requiresGII && ', '}
-                            {layer.requiresGII && 'GII Access Required'}
-                          </div>
-                        )}
+                    )}
+                    {(layer.requiresDUA || layer.requiresGII) && (
+                      <div className="text-yellow-600">
+                        {layer.requiresDUA && 'DUA Required'}
+                        {layer.requiresDUA && layer.requiresGII && ', '}
+                        {layer.requiresGII && 'GII Access Required'}
                       </div>
-                    </div>
+                    )}
+                  </div>
+                  
+                  {/* Buttons at bottom */}
+                  <div className="flex items-center gap-2 justify-end">
+                    {layer.serviceUrl && (
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(layer.serviceUrl || '')
+                          alert(`✅ URL Copied to Clipboard!\n\n${layer.name}\n\nTO ADD TO YOUR ARCGIS MAP:\n\n1. Go to ArcGIS Online and open your map\n2. Click the "Add" button\n3. Select "Add layer from URL"\n4. Paste the URL you just copied\n5. For layer type, select "ArcGIS Server web service"\n6. Click "Add to map"\n\nThe layer will appear on your map!\n\nNOTE: Some layers may require authentication.`)
+                        }}
+                        className="px-2 py-1 bg-gray-600 text-white text-xs rounded hover:bg-gray-700 flex items-center gap-1"
+                        title="Copy layer URL for ArcGIS"
+                      >
+                        📋 Copy URL
+                      </button>
+                    )}
                     
-                    <div className="flex items-center gap-2 ml-2">
-                      {layer.serviceUrl && (
-                        <button
-                          onClick={() => {
-                            navigator.clipboard.writeText(layer.serviceUrl || '')
-                            alert(`✅ URL Copied to Clipboard!\n\n${layer.name}\n\nTO ADD TO YOUR ARCGIS MAP:\n\n1. Go to ArcGIS Online and open your map\n2. Click the "Add" button\n3. Select "Add layer from URL"\n4. Paste the URL you just copied\n5. For layer type, select "ArcGIS Server web service"\n6. Click "Add to map"\n\nThe layer will appear on your map!\n\nNOTE: Some layers may require authentication.`)
-                          }}
-                          className="px-2 py-1 bg-gray-600 text-white text-xs rounded hover:bg-gray-700 flex items-center gap-1"
-                          title="Copy layer URL for ArcGIS"
-                        >
-                          📋 Copy URL
-                        </button>
-                      )}
-                      
-                      {isWorkable && (
-                        <button
-                          onClick={() => isSelected ? onRemoveLayer(layer.id) : onAddLayer(layer)}
-                          className={clsx(
-                            "px-3 py-1 rounded text-sm font-medium transition-colors",
-                            isSelected 
-                              ? "bg-red-500 text-white hover:bg-red-600"
-                              : "bg-blue-500 text-white hover:bg-blue-600"
-                          )}
-                        >
-                          {isSelected ? 'Remove' : 'Add'}
-                        </button>
-                      )}
-                    </div>
+                    {isWorkable && (
+                      <button
+                        onClick={() => isSelected ? onRemoveLayer(layer.id) : onAddLayer(layer)}
+                        className={clsx(
+                          "px-3 py-1 rounded text-sm font-medium transition-colors",
+                          isSelected 
+                            ? "bg-red-500 text-white hover:bg-red-600"
+                            : "bg-blue-500 text-white hover:bg-blue-600"
+                        )}
+                      >
+                        {isSelected ? 'Remove' : 'Add'}
+                      </button>
+                    )}
                   </div>
                 </div>
               )

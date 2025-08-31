@@ -1,0 +1,77 @@
+FEMA LAYER DISCOVERY REPORT
+==================================================
+
+Service: Medical Emergency Response (Fire/EMS/Law)
+URL: https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Structures_Medical_Emergency_Response_v1/FeatureServer
+Response Time: 0.69s
+Layers Found: 3
+
+  Layer 0: Hospitals_Medical_Centers
+    Geometry: esriGeometryPoint
+    Fields: 24 fields
+    Key Fields: OBJECTID, PERMANENT_IDENTIFIER, SOURCE_FEATUREID, SOURCE_DATASETID, SOURCE_DATADESC
+    Sample Data:
+      Record 1: {'OBJECTID': 2885490, 'PERMANENT_IDENTIFIER': '1d2bc67c-fcb9-4ade-a67e-72e4fafc4ef0', 'SOURCE_FEATUREID': '10052076', 'SOURCE_DATASETID': '68eeecf3-fda8-5d4a-8600-256a4b990e9c', 'SOURCE_DATADESC': '800 TNMC Update 8/17/2022'}
+      Record 2: {'OBJECTID': 2885514, 'PERMANENT_IDENTIFIER': '24ae8a99-2abc-4104-9996-b902640fb74d', 'SOURCE_FEATUREID': None, 'SOURCE_DATASETID': 'f206c252-ab5f-54e2-bae0-646b4349c36a', 'SOURCE_DATADESC': '800 TNMC Update 3/6/2021'}
+
+  Layer 1: Ambulance_Services
+    Geometry: esriGeometryPoint
+    Fields: 24 fields
+    Key Fields: OBJECTID, PERMANENT_IDENTIFIER, SOURCE_FEATUREID, SOURCE_DATASETID, SOURCE_DATADESC
+    Sample Data:
+      Record 1: {'OBJECTID': 2885485, 'PERMANENT_IDENTIFIER': '1a933057-dd81-41b4-91ad-213c66ad5f90', 'SOURCE_FEATUREID': 'NC000018', 'SOURCE_DATASETID': '76674785-df18-5ab4-9062-5bc0a73e3061', 'SOURCE_DATADESC': '740 TNMC Update 2/16/2021'}
+      Record 2: {'OBJECTID': 2885659, 'PERMANENT_IDENTIFIER': '523fecfd-8a09-4c5b-b480-6fdacebd9f5f', 'SOURCE_FEATUREID': '10168482', 'SOURCE_DATASETID': '191db870-1865-5ad0-b192-81217641e9b8', 'SOURCE_DATADESC': '740 TNMC Update 2/25/2023'}
+
+  Layer 2: Fire_Stations_EMS_Stations
+    Geometry: esriGeometryPoint
+    Fields: 24 fields
+    Key Fields: OBJECTID, PERMANENT_IDENTIFIER, SOURCE_FEATUREID, SOURCE_DATASETID, SOURCE_DATADESC
+    Sample Data:
+      Record 1: {'OBJECTID': 2885391, 'PERMANENT_IDENTIFIER': '05c1edfa-bb71-4b88-9dcd-9f4cf90127f1', 'SOURCE_FEATUREID': '10149452', 'SOURCE_DATASETID': 'fa078a6c-d720-5b3c-bcb0-2dbeea3be0a1', 'SOURCE_DATADESC': '740 TNMC Update 3/13/2022'}
+      Record 2: {'OBJECTID': 2885392, 'PERMANENT_IDENTIFIER': '056a76ab-03ff-41b5-8e2e-807ce735b5f0', 'SOURCE_FEATUREID': '10228005', 'SOURCE_DATASETID': '72f82cd9-8338-5acf-b14c-85c78c8d6fe3', 'SOURCE_DATADESC': '740 TNMC Update 1/20/2023'}
+
+------------------------------
+
+Service: USA Schools
+URL: https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Schools/FeatureServer
+Response Time: 0.53s
+Layers Found: 1
+
+  Layer 0: USA Schools
+    Geometry: Unknown
+    Fields: 0 fields
+
+------------------------------
+
+Service: USA Prison Boundaries
+URL: https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Prison_Boundaries/FeatureServer
+Response Time: 0.11s
+Layers Found: 1
+
+  Layer 0: USA Prison Boundaries
+    Geometry: Unknown
+    Fields: 0 fields
+
+------------------------------
+
+Service: USA Mobile Home Parks
+URL: https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Mobile_Home_Parks/FeatureServer
+Response Time: 0.11s
+Layers Found: 1
+
+  Layer 0: USA Mobile Home Parks
+    Geometry: Unknown
+    Fields: 0 fields
+
+------------------------------
+
+Service: USA Healthcare Facilities
+URL: https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Healthcare_Facilities/FeatureServer
+Response Time: 0.11s
+Layers Found: 1
+
+  Layer 0: USA Healthcare Facilities
+    Geometry: Unknown
+    Fields: 0 fields
+
+------------------------------

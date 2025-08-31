@@ -377,6 +377,143 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
   }, [])
 
   // Update layers when prop changes
+  // Create choropleth renderer for demographic layers
+  const createChoroplethRenderer = async (featureLayer: any) => {
+    const [smartMapping, Color, SimpleFillSymbol] = await Promise.all([
+      import('@arcgis/core/smartMapping/renderers/color'),
+      import('@arcgis/core/Color'),
+      import('@arcgis/core/symbols/SimpleFillSymbol')
+    ])
+
+    // Wait for layer to load to get field information
+    await featureLayer.load()
+    
+    const layerName = featureLayer.title.toLowerCase()
+    
+    // Try to find the right numeric field for the demographic data
+    const fields = featureLayer.fields || []
+    let targetField = null
+    
+    // Look for likely field names based on layer name
+    const fieldPatterns = {
+      'population total': ['P0010001', 'Total_Population', 'TOTPOP', 'POP', 'B01001_001E', 'Total_Pop', 'POPULATION'],
+      'population (total)': ['P0010001', 'Total_Population', 'TOTPOP', 'POP', 'B01001_001E'],
+      'housing units': ['H0010001', 'Total_Housing_Units', 'TOTHU', 'HU', 'B25001_001E', 'Housing_Units', 'HOUSING'],
+      'households': ['H0010001', 'Total_Households', 'TOTHH', 'HH', 'B11001_001E', 'Households', 'HOUSEHOLD'],
+      'population density': ['Population_Density', 'POPDENS', 'Density', 'POP_DENS'],
+      'median income': ['Median_Income', 'MEDHINC', 'B19013_001E', 'MED_INC', 'INCOME'],
+      'poverty': ['Poverty_Rate', 'POVERTY', 'POV_RATE', 'B17001_001E'],
+      '65 years': ['P0010001', 'Age_65_Plus', 'AGE65UP', 'OVER_65', 'B01001_025E'],
+      'under 5': ['P0010001', 'Age_Under_5', 'AGE5DOWN', 'UNDER_5', 'B01001_003E'],
+      'black': ['P0010004', 'Black_Population'],
+      'hispanic': ['P0010002', 'Hispanic_Population'],
+      'asian': ['P0010006', 'Asian_Population']
+    }
+    
+    // Find matching pattern
+    for (const [pattern, fieldNames] of Object.entries(fieldPatterns)) {
+      if (layerName.includes(pattern)) {
+        for (const fieldName of fieldNames) {
+          const field = fields.find((f: any) => 
+            f.name.toUpperCase() === fieldName.toUpperCase() && 
+            (f.type === 'double' || f.type === 'integer' || f.type === 'single')
+          )
+          if (field) {
+            targetField = field.name
+            break
+          }
+        }
+        if (targetField) break
+      }
+    }
+    
+    // If no specific field found, look for any numeric field with relevant keywords
+    if (!targetField) {
+      const numericFields = fields.filter((f: any) => 
+        (f.type === 'double' || f.type === 'integer' || f.type === 'single') &&
+        !f.name.toLowerCase().includes('objectid') &&
+        !f.name.toLowerCase().includes('shape')
+      )
+      
+      // Try to find a field with a relevant name
+      for (const field of numericFields) {
+        const fname = field.name.toLowerCase()
+        if (fname.includes('total') || fname.includes('pop') || 
+            fname.includes('hh') || fname.includes('hu') ||
+            fname.includes('income') || fname.includes('density')) {
+          targetField = field.name
+          break
+        }
+      }
+      
+      // Last resort: use first numeric field
+      if (!targetField && numericFields.length > 0) {
+        targetField = numericFields[0].name
+      }
+    }
+    
+    if (!targetField) {
+      console.log('No numeric field found for choropleth in', featureLayer.title)
+      return null
+    }
+
+    // Define color schemes
+    const colorSchemes = {
+      population: {
+        colors: [
+          new Color.default([255, 255, 204, 0.8]), // Light yellow
+          new Color.default([255, 237, 160, 0.8]), 
+          new Color.default([254, 178, 76, 0.8]),  // Orange
+          new Color.default([253, 141, 60, 0.8]),  
+          new Color.default([240, 59, 32, 0.8]),   // Red
+          new Color.default([189, 0, 38, 0.8])     // Dark red
+        ]
+      },
+      income: {
+        colors: [
+          new Color.default([237, 248, 251, 0.8]), // Light blue
+          new Color.default([178, 226, 226, 0.8]),
+          new Color.default([102, 194, 164, 0.8]), // Teal
+          new Color.default([44, 162, 95, 0.8]),   // Green
+          new Color.default([0, 109, 44, 0.8])     // Dark green
+        ]
+      },
+      density: {
+        colors: [
+          new Color.default([247, 252, 253, 0.8]), // Very light blue
+          new Color.default([191, 211, 230, 0.8]),
+          new Color.default([158, 188, 218, 0.8]),
+          new Color.default([140, 150, 198, 0.8]), // Purple
+          new Color.default([136, 65, 157, 0.8])   // Dark purple
+        ]
+      }
+    }
+
+    // Choose color scheme
+    let colorScheme = colorSchemes.population
+    if (layerName.includes('income')) colorScheme = colorSchemes.income
+    else if (layerName.includes('density')) colorScheme = colorSchemes.density
+
+    try {
+      // Use smart mapping to create a color renderer
+      const colorParams = {
+        layer: featureLayer,
+        field: targetField,
+        view: viewInstance.current,
+        colorScheme: colorScheme,
+        outlineOptimizationEnabled: true,
+        defaultSymbolEnabled: false
+      }
+      
+      const response = await smartMapping.createColorRenderer(colorParams)
+      console.log(`Applied choropleth to ${featureLayer.title} using field ${targetField}`)
+      return response.renderer
+    } catch (error) {
+      console.error('Error creating color renderer:', error)
+      return null
+    }
+  }
+
   useEffect(() => {
     const updateLayers = async () => {
       if (!mapInstance.current || !viewInstance.current) return
@@ -398,7 +535,30 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
       for (const layer of layers) {
         if (layer.serviceUrl && !layerRefs.current.has(layer.serviceUrl)) {
           try {
-            const featureLayer = new FeatureLayer.default({
+            // Check if this is a demographic layer that needs choropleth rendering
+            const isDemographicLayer = (
+              layer.name.toLowerCase().includes('population') ||
+              layer.name.toLowerCase().includes('housing') ||
+              layer.name.toLowerCase().includes('household') ||
+              layer.name.toLowerCase().includes('income') ||
+              layer.name.toLowerCase().includes('poverty') ||
+              layer.name.toLowerCase().includes('density') ||
+              layer.name.toLowerCase().includes('65 years') ||
+              layer.name.toLowerCase().includes('under 5') ||
+              layer.name.toLowerCase().includes('black') ||
+              layer.name.toLowerCase().includes('hispanic') ||
+              layer.name.toLowerCase().includes('asian') ||
+              layer.name.toLowerCase().includes('disability') ||
+              layer.name.toLowerCase().includes('unemployment')
+            ) && (
+              layer.name.toLowerCase().includes('county') ||
+              layer.name.toLowerCase().includes('tract') ||
+              layer.name.toLowerCase().includes('total') ||
+              layer.name.toLowerCase().includes('median') ||
+              layer.name.toLowerCase().includes('density')
+            )
+
+            const featureLayerConfig: any = {
               url: layer.serviceUrl,
               title: layer.name,
               outFields: ["*"],
@@ -406,7 +566,23 @@ const MapView = forwardRef<MapViewRef, MapViewProps>(function MapView({ layers }
               popupTemplate: createPopupTemplate(layer),
               // Ensure the renderer is loaded
               refreshInterval: 0.1 // This forces immediate rendering
-            })
+            }
+
+            const featureLayer = new FeatureLayer.default(featureLayerConfig)
+            
+            // Apply choropleth renderer for demographic layers after creation
+            if (isDemographicLayer) {
+              featureLayer.when(async () => {
+                try {
+                  const renderer = await createChoroplethRenderer(featureLayer)
+                  if (renderer) {
+                    featureLayer.renderer = renderer
+                  }
+                } catch (error) {
+                  console.log('Using default renderer for', layer.name)
+                }
+              })
+            }
 
             // Add layer to map immediately
             mapInstance.current.add(featureLayer)
