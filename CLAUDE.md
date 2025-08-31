@@ -64,38 +64,46 @@ npm run build
 # Run linter
 npm run lint
 
-# Deploy to GitHub Pages (happens automatically via GitHub Actions on push to main)
-git push origin main
+# Test FEMA layers (Python script for debugging)
+python fema_layer_tester.py
 ```
 
-## Data Processing Pipeline Architecture
+## Data Architecture
 
-The application uses a three-stage data processing pipeline that must be understood to make architectural changes:
+### Dual Data Source System
+The application integrates two distinct data sources:
 
-### Stage 1: CSV Processing (`scripts/process-data.js`)
-1. Reads `public/HIFLD_Open_Crosswalk_Geoplatform.csv` (305 infrastructure layers)
+1. **HIFLD Layers** (305 layers)
+   - Source: `public/HIFLD_Open_Crosswalk_Geoplatform.csv`
+   - Processing: `scripts/process-data.js` → `public/processed-layers.json`
+   - Testing: `scripts/test-layers.js` → `public/layer-test-results.json`
+   - Working: 254 layers (83%)
+
+2. **FEMA RAPT Layers** (121 layers)
+   - Source: `lib/femaRaptLayers.ts` (hardcoded from FEMA RAPT tool analysis)
+   - No processing needed - direct TypeScript import
+   - Working: 62 layers (51%)
+   - Categories: Infrastructure, Healthcare, Education, Hazards, Demographics
+
+### Data Processing Pipeline (HIFLD only)
+
+#### Stage 1: CSV Processing (`scripts/process-data.js`)
+1. Reads `public/HIFLD_Open_Crosswalk_Geoplatform.csv`
 2. Categorizes layers based on keywords in layer names
 3. Outputs `public/processed-layers.json` with structure:
    - `layers`: Array of all layers with categories
    - `categorized`: Layers grouped by category
    - `stats`: Summary statistics
 
-### Stage 2: Layer Testing (`scripts/test-layers.js`)
+#### Stage 2: Layer Testing (`scripts/test-layers.js`)
 1. Reads `processed-layers.json`
-2. Tests each layer's service endpoint with lenient validation:
-   - Accepts ANY 200 response as working
-   - Tries multiple URL formats (plain, ?f=json, ?f=pjson)
-   - 10-second timeout per request
-3. Outputs `public/layer-test-results.json` with:
-   - `results`: All layers with test status
-   - `stats`: Working/failed/restricted counts
-   - Test statuses: 'working', 'failed', 'restricted', 'no_url', 'timeout', 'unreachable'
+2. Tests each layer's service endpoint with lenient validation
+3. Outputs `public/layer-test-results.json` with test statuses
 
-### Stage 3: Runtime Loading
-The React app (`src/app/page.tsx`) loads data in priority order:
-1. First tries `/layer-test-results.json` (has test results)
-2. Falls back to `/processed-layers.json` (no test results)
-3. All filtering/searching happens client-side on loaded data
+#### Stage 3: Runtime Loading
+The React app (`src/app/page.tsx`) loads:
+- HIFLD data from JSON files
+- FEMA data from TypeScript import
 
 ## Component Architecture
 
@@ -104,106 +112,97 @@ All state lives in `src/app/page.tsx` and flows down through props:
 
 ```
 page.tsx (orchestrator)
-├── State: allLayers, filteredLayers, selectedLayers, filters
-├── Data loading: loadLayerData() → fetch JSON files
+├── State: allLayers, filteredLayers, selectedLayers, activeTab
+├── Data loading: 
+│   ├── HIFLD: loadLayerData() → fetch JSON files
+│   └── FEMA: Direct import from femaRaptLayers.ts
 └── Components:
-    ├── SearchBar → updates searchQuery state
-    ├── Category dropdown → updates selectedCategory state  
-    ├── LayerList → displays filteredLayers, calls onAddLayer
-    ├── MapView → renders selectedLayers on ArcGIS map
-    ├── ExportMapButton → exports Web Map JSON config
-    └── ExportGeoJSONButton → exports GeoJSON extent
+    ├── Tab Switcher (HIFLD | FEMA RAPT)
+    ├── HIFLD Tab:
+    │   ├── SearchBar → updates searchQuery
+    │   ├── Category dropdown → filters by category
+    │   └── LayerList → displays HIFLD layers
+    ├── FEMATab:
+    │   ├── Search → filters FEMA layers
+    │   ├── Category dropdown → filters by category
+    │   └── Layer cards → displays FEMA layers
+    └── MapView → renders selected layers from both sources
 ```
 
-### Layer Selection Flow
-1. User interacts with LayerList component
-2. LayerList calls `onAddLayer(layer)` callback
-3. page.tsx adds to `selectedLayers` state
-4. MapView re-renders with new layers
-5. Only layers with `testStatus === 'working'` are sent to MapView
+### Layer ID Compatibility
+The `EnhancedLayer` interface supports both:
+- `id: number` for HIFLD layers
+- `id: string` for FEMA layers
 
-## Export Functionality
+This allows both layer types to coexist in `selectedLayers` state.
 
-The app provides two export formats for ArcGIS Online:
+## Key Files
 
-### Web Map JSON (Blue Button)
-- Creates a configuration file with layer references/URLs
-- Does NOT contain actual geographic data
-- Tells ArcGIS which online services to connect to
-- Use when: Creating interactive maps with live data connections
+### Core Application
+- `src/app/page.tsx` - Main orchestrator, manages both HIFLD and FEMA layers
+- `src/components/FEMATab.tsx` - FEMA RAPT layer interface
+- `src/components/LayerList.tsx` - HIFLD layer interface
+- `src/components/MapView.tsx` - ArcGIS map integration for both layer types
 
-### GeoJSON (Green Button)
-- Creates a file with actual geographic features
-- Currently exports map extent as a polygon
-- Converts Web Mercator coordinates to WGS84
-- Use when: Need a simple geographic reference or area marker
+### Data Files
+- `public/HIFLD_Open_Crosswalk_Geoplatform.csv` - HIFLD source data (DO NOT MODIFY)
+- `lib/femaRaptLayers.ts` - FEMA RAPT layer definitions (121 layers)
+- `public/processed-layers.json` - Generated HIFLD data
+- `public/layer-test-results.json` - HIFLD test results
 
-## Key Architectural Decisions
+### Scripts
+- `scripts/process-data.js` - HIFLD CSV processor
+- `scripts/test-layers.js` - HIFLD endpoint tester
+- `fema_layer_tester.py` - FEMA layer debugging tool
 
-### Why Node.js Scripts Instead of API Routes
-- GitHub Pages deployment requires static export (`output: 'export'`)
-- Static export disables Next.js API routes and middleware
-- Data processing happens at build time, not runtime
-- Results are served as static JSON files
+## FEMA Layer Categories
 
-### Layer Testing Strategy
-The test script (`scripts/test-layers.js`) is intentionally lenient:
-- Previous strict validation rejected many working layers
-- Now accepts ANY 200 HTTP response
-- Tests all 305 layers (not just first 100)
-- Results: 254 working, 51 restricted, 0 failed
+The FEMA RAPT integration includes:
+- **Infrastructure**: Fire stations, law enforcement, utilities
+- **Healthcare**: Hospitals, urgent care, pharmacies, nursing homes
+- **Education**: Schools, colleges, technical schools
+- **Demographics**: County/tract population, income, vulnerability metrics
+- **Hazards**: Wildfire, flood, earthquake, weather
+- **Weather**: Real-time radar, watches/warnings
 
-### Deployment Configuration
+## Known Issues and Constraints
+
+### Technical Limitations
+1. **Static Export**: GitHub Pages requires static export - no API routes
+2. **CORS**: Some layers fail client-side despite passing server tests
+3. **Large Data**: All layers loaded into memory on app start
+4. **Choropleth Rendering**: Demographic layers show solid colors in local viewer (work correctly in ArcGIS Online)
+
+### ArcGIS Constraints
+- Titles cannot contain colons (use dashes instead)
+- GeoJSON exports only map extent, not all features
+- Some layers require zoom levels to display
+
+## Deployment Configuration
+
 `next.config.js` uses environment-based configuration:
 ```javascript
 output: 'export',
 basePath: process.env.NODE_ENV === 'production' ? '/infrastructure-tool-v2' : '',
-assetPrefix: process.env.NODE_ENV === 'production' ? '/infrastructure-tool-v2/' : '',
+assetPrefix: process.env.NODE_ENV === 'production' ? '/infrastructure-tool-v2/' : ''
 ```
 
-## Critical Files and Their Roles
+## Testing and Validation
 
-- `public/HIFLD_Open_Crosswalk_Geoplatform.csv` - Source data, DO NOT MODIFY
-- `public/processed-layers.json` - Generated by process-data.js
-- `public/layer-test-results.json` - Generated by test-layers.js  
-- `lib/layerCategories.ts` - Category definitions and categorization logic
-- `src/app/page.tsx` - Main orchestrator, all state management
-- `src/components/LayerList.tsx` - Renders categorized layers with status indicators
-- `src/components/MapView.tsx` - ArcGIS map integration, dynamic imports for performance
-- `src/components/ExportMapButton.tsx` - Web Map JSON export
-- `src/components/ExportGeoJSONButton.tsx` - GeoJSON export
+### Current Statistics
+- **HIFLD**: 305 total, 254 working (83%), 51 restricted (17%)
+- **FEMA**: 121 total, 62 working (51%), 59 broken (49%)
+- **Combined**: 426 layers, 316 working (74%)
 
-## Testing Results (Current)
+### Layer Testing Strategy
+- Lenient validation: Accept ANY 200 HTTP response
+- Multiple URL format attempts
+- 10-second timeout per request
+- Categorize failures: restricted, timeout, unreachable
 
-After running `npm run test-layers`:
-- Total Layers: 305
-- ✅ Working: 254 (83%)
-- 🔒 Restricted: 51 (17%)
-- ❌ Failed: 0
+## Default UI Settings
 
-## Known Constraints
-
-1. **No middleware with static export** - Password protection disabled for GitHub Pages
-2. **CORS limitations** - Some layers fail client-side despite passing server tests
-3. **Large initial load** - All 305 layers loaded into memory on app start
-4. **No server-side filtering** - All search/filter operations are client-side
-5. **ArcGIS title restrictions** - Titles cannot contain colons
-6. **GeoJSON limitations** - Exports only map extent, not all layer features
-
-## ArcGIS Online Import Guidelines
-
-### For Web Map JSON:
-1. Select file type: "Web Map" (NOT GeoJSON)
-2. Manually enter title (no colons), summary, and tags
-3. Creates interactive map with live data connections
-
-### For GeoJSON:
-1. Select file type: "GeoJSON" (NOT Web Map)  
-2. Manually enter title (no colons), summary, and tags
-3. Creates feature layer with extent polygon
-
-## Default Settings
-
-- **"Working layers only" checkbox**: Checked by default (shows only verified working layers)
-- **Auto-generated titles**: Use dashes instead of colons for ArcGIS compatibility
-- **Map view**: Defaults to USA bounds if no extent available
+- **"Working layers only" checkbox**: Checked by default
+- **Tab selection**: HIFLD tab active by default
+- **Map view**: Defaults to USA bounds
+- **Selected layers panel**: Shows on both HIFLD and FEMA tabs
