@@ -116,9 +116,12 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold">Infrastructure Search Tool v2</h1>
+              <h1 className="text-3xl font-bold">Infrastructure Search Tool v2 - BETA</h1>
               <p className="text-blue-200 mt-1">
                 Search, test, and visualize HIFLD infrastructure layers
+              </p>
+              <p className="text-yellow-300 text-sm mt-1 font-medium">
+                ⚠️ This is a beta tool for testing purposes - all layers should be verified
               </p>
             </div>
             <div className="flex items-center gap-6">
@@ -300,7 +303,12 @@ export default function Home() {
             }))} 
           />
           
-          {/* Map Controls - Removed Refresh Data button as it's now in header */}
+          {/* Beta Disclaimer Banner */}
+          <div className="absolute bottom-0 left-0 right-0 bg-yellow-100 border-t-2 border-yellow-400 px-4 py-2">
+            <p className="text-center text-sm text-yellow-800 font-medium">
+              ⚠️ BETA VERSION - This is a testing tool. All layer data should be independently verified before use in production.
+            </p>
+          </div>
         </main>
       </div>
     </div>
