@@ -121,11 +121,12 @@ export default function Home() {
                 Search, test, and visualize HIFLD infrastructure layers
               </p>
             </div>
-            <div className="flex items-center gap-4">
-              {stats && (
+            <div className="flex items-center gap-6">
+              {/* Show stats based on active tab */}
+              {activeTab === 'hifld' && stats && (
                 <div className="text-right">
                   <div className="text-sm text-blue-200">
-                    {stats.total} Total Layers
+                    {stats.total} Total HIFLD Layers
                   </div>
                   <div className="flex gap-4 mt-1">
                     <StatusIndicator status="working" count={stats.working} />
@@ -134,11 +135,23 @@ export default function Home() {
                   </div>
                 </div>
               )}
+              {activeTab === 'fema' && (
+                <div className="text-right">
+                  <div className="text-sm text-blue-200">
+                    121 Total FEMA Layers
+                  </div>
+                  <div className="flex gap-4 mt-1">
+                    <StatusIndicator status="working" count={62} />
+                    <StatusIndicator status="failed" count={59} />
+                    <StatusIndicator status="restricted" count={0} />
+                  </div>
+                </div>
+              )}
               <button 
                 onClick={() => window.location.reload()}
                 className="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg transition-colors font-medium"
               >
-                🔄 Refresh Data
+                Refresh Data
               </button>
             </div>
           </div>
@@ -148,39 +161,27 @@ export default function Home() {
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar */}
         <aside className="w-96 bg-white border-r border-gray-200 flex flex-col">
-          {/* Tab Navigation - Enhanced visibility */}
-          <div className="flex border-b-2 border-gray-300 bg-gray-100">
+          {/* Tab Navigation - Clean and simple */}
+          <div className="flex border-b border-gray-200">
             <button
               onClick={() => setActiveTab('hifld')}
-              className={`flex-1 px-4 py-4 font-semibold transition-all relative ${
+              className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
                 activeTab === 'hifld'
-                  ? 'bg-white text-blue-700 border-l-4 border-r border-t-2 border-blue-500 shadow-md -mb-0.5'
-                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50 border-b-2 border-gray-300'
+                  ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-500'
+                  : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
               }`}
             >
-              <div className="flex flex-col items-center">
-                <span className="text-lg">🏢</span>
-                <span>HIFLD Layers</span>
-                {activeTab === 'hifld' && (
-                  <span className="text-xs text-blue-600 mt-1">305 Infrastructure Layers</span>
-                )}
-              </div>
+              HIFLD Layers
             </button>
             <button
               onClick={() => setActiveTab('fema')}
-              className={`flex-1 px-4 py-4 font-semibold transition-all relative ${
+              className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
                 activeTab === 'fema'
-                  ? 'bg-white text-blue-700 border-r-4 border-l border-t-2 border-blue-500 shadow-md -mb-0.5'
-                  : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50 border-b-2 border-gray-300'
+                  ? 'bg-blue-50 text-blue-700 border-b-2 border-blue-500'
+                  : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
               }`}
             >
-              <div className="flex flex-col items-center">
-                <span className="text-lg">🚨</span>
-                <span>FEMA RAPT</span>
-                {activeTab === 'fema' && (
-                  <span className="text-xs text-blue-600 mt-1">121 Emergency Layers</span>
-                )}
-              </div>
+              FEMA RAPT
             </button>
           </div>
 

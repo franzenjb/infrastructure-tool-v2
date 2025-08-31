@@ -17,6 +17,25 @@ export default function FEMATab({ selectedLayerIds = new Set(), onAddLayer, onRe
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [showWorkingOnly, setShowWorkingOnly] = useState(true)
   
+  // Status helpers - matching HIFLD style
+  const getStatusColor = (status: string) => {
+    switch(status) {
+      case 'working': return 'text-green-600'
+      case 'slow': return 'text-yellow-600'
+      case 'broken': return 'text-red-600'
+      default: return 'text-gray-400'
+    }
+  }
+  
+  const getStatusIcon = (status: string) => {
+    switch(status) {
+      case 'working': return '✓'
+      case 'slow': return '⚠'
+      case 'broken': return '✗'
+      default: return '?'
+    }
+  }
+  
   // Get unique categories from layers
   const categories = useMemo(() => {
     const cats = new Set(FEMA_RAPT_LAYERS.map(l => l.category))
@@ -114,38 +133,7 @@ export default function FEMATab({ selectedLayerIds = new Set(), onAddLayer, onRe
 
   return (
     <div className="flex flex-col h-full">
-      {/* Header */}
-      <div className="p-4 border-b border-gray-200 bg-gray-50">
-        <div className="flex justify-between items-center mb-2">
-          <h2 className="text-lg font-semibold text-gray-900">FEMA RAPT Layers ({FEMA_RAPT_LAYERS.length})</h2>
-          <button
-            onClick={exportSelected}
-            className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 disabled:bg-gray-400"
-            disabled={selectedLayers.size === 0}
-          >
-            📥 Export Selected ({selectedLayers.size})
-          </button>
-        </div>
-        <div className="space-y-1">
-          <p className="text-sm text-gray-600">
-            Complete FEMA RAPT layers extracted from Resilience Analysis and Planning Tool
-          </p>
-          <div className="flex items-center gap-4 text-xs">
-            <span className="flex items-center gap-1">
-              <span>🟢</span>
-              <span className="text-green-700 font-medium">{availabilityStats.working} Working</span>
-            </span>
-            <span className="flex items-center gap-1">
-              <span>🟡</span>
-              <span className="text-yellow-700 font-medium">{availabilityStats.slow} Slow</span>
-            </span>
-            <span className="flex items-center gap-1">
-              <span>🔴</span>
-              <span className="text-red-700 font-medium">{availabilityStats.broken} Broken</span>
-            </span>
-          </div>
-        </div>
-      </div>
+      {/* Header - Removed stats from here, will be in main banner */}
       
       {/* Search and Filter */}
       <div className="p-4 border-b border-gray-200 bg-white space-y-3">
@@ -197,39 +185,38 @@ export default function FEMATab({ selectedLayerIds = new Set(), onAddLayer, onRe
         <div className="space-y-2">
           {filteredLayers.map(layer => {
             const isSelected = selectedLayers.has(layer.id)
+            const isOnMap = selectedLayerIds.has(layer.id)
             
             return (
               <div
                 key={layer.id}
                 className={clsx(
                   "p-3 rounded-lg border transition-all",
-                  isSelected 
+                  isOnMap
+                    ? "border-green-400 bg-green-50"
+                    : isSelected 
                     ? "border-blue-500 bg-blue-50" 
                     : "border-gray-200 hover:border-gray-300 bg-white"
                 )}
               >
-                {/* Layer name at top */}
+                {/* Layer name and status at top */}
                 <div className="flex items-start gap-2 mb-2">
-                  <span 
-                    className="text-sm flex-shrink-0 mt-0.5" 
-                    title={getStatusIndicator(layer.availability || 'broken').title}
-                  >
-                    {getStatusIndicator(layer.availability || 'broken').emoji}
+                  <span className={getStatusColor(layer.availability || 'broken')}>
+                    {getStatusIcon(layer.availability || 'broken')}
                   </span>
                   <h4 className="font-medium text-gray-900 flex-1">
                     {layer.name}
                   </h4>
                 </div>
                 
-                {/* Description and metadata */}
-                <div className="text-xs text-gray-500 mb-2 space-y-1">
-                  <div>{layer.description}</div>
-                  <div>Category: {layer.category} | Type: {layer.serviceType} | Status: {layer.availability || 'broken'}</div>
+                {/* Description */}
+                <div className="text-xs text-gray-500 mb-2">
+                  {layer.description}
                 </div>
                 
-                {/* URL preview */}
-                <div className="text-xs bg-gray-50 p-2 rounded mb-2 font-mono overflow-x-auto">
-                  {layer.serviceUrl}
+                {/* Metadata */}
+                <div className="text-xs text-gray-400 mb-3">
+                  {layer.category} • {layer.agency || 'FEMA'}
                 </div>
                 
                 {/* Buttons at bottom */}
@@ -238,7 +225,7 @@ export default function FEMATab({ selectedLayerIds = new Set(), onAddLayer, onRe
                     onClick={() => copyUrl(layer)}
                     className="px-2 py-1 bg-gray-600 text-white text-xs rounded hover:bg-gray-700"
                   >
-                    {copiedUrl === layer.id ? '✅ Copied' : '📋 Copy URL'}
+                    {copiedUrl === layer.id ? 'Copied' : 'Copy URL'}
                   </button>
                   
                   {onAddLayer && onRemoveLayer ? (
